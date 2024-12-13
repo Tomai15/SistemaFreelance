@@ -2,16 +2,31 @@
 
 namespace App\Models;
 
+use Urgencia;
+use Confidencialidad;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Proyecto extends Model
 {
     protected $table = 'proyecto';
     public $timestamps = false;
 
+    protected $fillable = 
+    [
+        'nombre_proyecto',
+        'descripcion',
+        'url_documento_requerimientos',
+        'horas_estimadas',
+        'nivel_urgencia',
+        'calificacion_trabajo'
+    ];
+    public function casts(): array
+    {
+        return ['nivel_urgencia' => Urgencia::class, 'nivel_confidencialidad' => Confidencialidad::class];
+    }
     public function tecnologias(): BelongsToMany
     {
         return $this->belongsToMany(Tecnologia::class,'tecnologia_por_proyecto');
