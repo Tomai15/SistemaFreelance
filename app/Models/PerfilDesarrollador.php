@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PerfilDesarrollador extends Model
 {
+    protected $table = 'peril_desarrollador';
+    
+    protected $fillable = 
+    [
+        'promedio_calificacion',
+        'nombre',
+        'apellido',
+        
+
+    ];
+
     public function trabajosRealizados(): HasMany
     {
         return $this->hasMany(Proyecto::class);
