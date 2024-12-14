@@ -1,4 +1,4 @@
-<footer class="bg-dark text-white pt-5 pb-4">
+<footer id="footer" class="bg-dark text-white pt-5 pb-4">
     <div class="container">
         <div class="row">
 
@@ -47,7 +47,7 @@
             </div>
 
         </div>
-        
+
         <div class="row mt-4">
             <div class="col text-center">
                 <p>&copy; 2024 Freenlance. Todos los derechos reservados.</p>
