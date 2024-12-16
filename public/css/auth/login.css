@@ -1,0 +1,12 @@
+/* Estilo para el logo */
+.logo {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Estilo para la tarjeta */
+.card {
+    width: 28rem;
+    border-radius: 10px;
+}
