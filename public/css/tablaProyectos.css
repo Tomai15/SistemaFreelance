@@ -1,0 +1,245 @@
+.proyectos .container-fluid {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* Filtrado y busqueda */
+.filter-search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: space-between; /* Ensures items are spaced out */
+}
+
+.filter-dropdown {
+    position: relative;
+    list-style-type: none;
+}
+
+.filter-button {
+    background-color: #4CB094;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover {
+    background-color: #FFDCE4;
+}
+
+.filter-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.search-button {
+    background-color: #4CB094;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Estilo de la tabla */
+.table-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: #2C332D;
+    color: white;
+    padding: 12px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #d3e3de;
+    color: #606F89;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: white;
+    color: #606F89;
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+td:first-child {
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 200px;
+    overflow-wrap: break-word;
+}
+
+td:last-child {
+    padding-right: 8px;
+    text-align: center;
+}
+
+th:last-child {
+    padding-right: 8px;
+    text-align: center;
+}
+
+/* Estilo de los estados */
+.status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.status.confidentiality-low,
+.status.urgency-low {
+    background-color: #8BC34A;
+}
+
+.status.confidentiality-medium,
+.status.urgency-medium {
+    background-color: #c39b4a;
+}
+
+.status.confidentiality-high,
+.status.urgency-high {
+    background-color: #cf3932;
+}
+
+.status.confidentiality-very-high {
+    background-color: #fa160a;
+}
+
+
+/* Paginacion */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #2C332D;
+    color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+.pagination .pagination-button,
+.pagination .current-page {
+    margin: 0 5px;
+}
+
+.proyectos-count {
+    font-size: 14px;
+}
+
+.page-info {
+    font-size: 14px;
+    padding-right: 50px;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-right: 30px;
+}
+
+.pagination-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.current-page {
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+.pagination .proyectos-count, .pagination .page-info, .pagination-controls {
+    margin: 0 10px;
+}
+
+.proyectos .clickable-row {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.proyectos .clickable-row:hover {
+    background-color: #B0C2D6;
+}
+
+.search-button, .proyectos-button {
+    background-color: #4CB094;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none; 
+    outline: none; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.search-button:hover, .proyectos-button:hover {
+    background-color: #3f967e; 
+    color: white;
+}
+
+.search-button:focus, .proyectos-button:focus {
+    background-color: #3f967e; 
+    color: white;
+    outline: none; 
+}
+
+.filter-dropdown,
+.search-input,
+.search-button {
+    flex-shrink: 0; 
+}
+
+.proyectos-button {
+    margin-left: auto; 
+}

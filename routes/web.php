@@ -14,3 +14,7 @@ Route::get('/login',function()
 {
     return view('auth.login');
 });
+
+Route::get('/proyectos', function () {
+    return view('proyectos.indexHtmlPuro');
+});
