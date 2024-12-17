@@ -33,8 +33,8 @@
                     </ul>
 
                     <div class="d-flex">
-                        <button class="btn btn-outline-primary me-2" type="button">Iniciar Sesión</button>
-                        <button class="btn btn-primary btn-register" type="button">Registrarse</button>
+                        <a href="/login" class="btn btn-outline-primary me-2" type="button">Iniciar Sesión</a>
+                        <a href="/register" class="btn btn-primary btn-register" type="button">Registrarse</a>
                     </div>
                 </div>
             </div>

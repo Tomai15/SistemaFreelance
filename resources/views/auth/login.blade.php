@@ -20,6 +20,7 @@
             <div class="text-center mb-3">
                 <img src="{{asset('imagensPresentacion/Logo.jpg')}}" alt="Logo" class="logo">
             </div>
+            <h1 class="text-center mb-3">Inicie sesion</h1>
             <!-- Formulario -->
             <form>
                 <!-- Campo de Email o Username -->
