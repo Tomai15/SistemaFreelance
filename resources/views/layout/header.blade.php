@@ -31,7 +31,17 @@
                             <a class="nav-link" href="#">Contacto</a>
                         </li>
                     </ul>
+                    @if (session()->has("success"))
+                        <div class="container">
+                            <div class="alert alert-success text-center">{{ session("success") }}</div>
+                        </div>
+                    @endif
 
+                    @if (session()->has("fail"))
+                        <div class="container">
+                            <div class="alert alert-danger text-center">{{ session("fail") }}</div>
+                        </div>
+                    @endif
                     <div class="d-flex">
                         <a href="/login" class="btn btn-outline-primary me-2" type="button">Iniciar Sesión</a>
                         <a href="/register" class="btn btn-primary btn-register" type="button">Registrarse</a>

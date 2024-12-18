@@ -32,13 +32,24 @@ class LoginController extends Controller
         );
         $datosUsuario["password"] = bcrypt($datosUsuario["password"]);
         $datosUsuario["nombre_usuario"] = $datosUsuario["nombreUsuario"];
-        unset($datosUsuario["nombre_usuario"]);
+        unset($datosUsuario["nombreUsuario"]);
         Usuario::create($datosUsuario);
+        return response()->redirectTo("/home")->with("success","Se registro correctamente, inicie sesion");
 
     }
     public function  mostrarLogin(Request $request)
     {
         return view('auth.login');
+    }
+    public function logearUsuario(Request $request)
+    {
+        $datosLogin = $request->validate
+        (
+            [
+                "email" => ,
+                "password" => ,
+            ]
+        )
     }
 
 }
