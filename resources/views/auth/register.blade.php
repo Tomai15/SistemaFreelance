@@ -28,8 +28,8 @@
                     <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
                     <input  name="nombreUsuario" class="form-control" placeholder="Nombre de usuario" required>
                 </div>
-                 @error('nombreUsuario')
-                        <div class="alert alert-danger">{{$message}}</div>
+                @error('nombreUsuario')
+                    <div class="alert alert-danger">{{$message}}</div>
                 @enderror
                 <!-- Campo de Email o Username -->
                 <div class="input-group mb-3">

@@ -22,17 +22,24 @@
             </div>
             <h1 class="text-center mb-3">Inicie sesion</h1>
             <!-- Formulario -->
-            <form>
+            <form action="/login" method="POST">
+                @csrf
                 <!-- Campo de Email o Username -->
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="email" class="form-control" placeholder="Mail" required>
+                    <input name="email" type="email" class="form-control" placeholder="Mail" required>
                 </div>
+                @error('email')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
                 <!-- Campo de Password -->
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Contraseña" required>
+                    <input name ="email" type="password" class="form-control" placeholder="Contraseña" required>
                 </div>
+                @error('password')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
                 <!-- Recordarme y Olvidé mi contraseña -->
                 <div class="d-flex justify-content-between mb-3">
                     <div class="form-check">

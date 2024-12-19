@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Usuario;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -46,10 +48,24 @@ class LoginController extends Controller
         $datosLogin = $request->validate
         (
             [
-                "email" => ,
-                "password" => ,
+                "email" => ['required',],
+                "password" => ['required']
+            ],
+            [
+                'email.required' => "Necesita un mail para iniciar sesion",
+                'password' => "Necesita ingresar su contraseña para iniciar sesion"
             ]
-        )
+        );
+        $usuario = User::where('email',$datosLogin['email']);
+
+        if(!isset($usuario) || !Hash::check($datosLogin['password'], $usuario->password))
+        {
+            return back()->withErrors(['login' => 'Las credenciales no son validas']);
+        }
+
+        Auth::login($usuario);
+
+        return response()->redirectTo('/proyectos.index');
     }
 
 }
