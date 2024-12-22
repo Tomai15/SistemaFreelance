@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Usuario;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -56,7 +56,7 @@ class LoginController extends Controller
                 'password' => "Necesita ingresar su contraseña para iniciar sesion"
             ]
         );
-        $usuario = User::where('email',$datosLogin['email']);
+        $usuario = Usuario::where('email',$datosLogin['email'])->first();
 
         if(!isset($usuario) || !Hash::check($datosLogin['password'], $usuario->password))
         {
@@ -65,7 +65,7 @@ class LoginController extends Controller
 
         Auth::login($usuario);
 
-        return response()->redirectTo('/proyectos.index');
+        return response()->redirectTo('/proyectos');
     }
 
 }

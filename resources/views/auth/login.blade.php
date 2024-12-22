@@ -35,7 +35,7 @@
                 <!-- Campo de Password -->
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input name ="email" type="password" class="form-control" placeholder="Contraseña" required>
+                    <input name ="password" type="password" class="form-control" placeholder="Contraseña" required>
                 </div>
                 @error('password')
                     <div class="alert alert-danger">{{$message}}</div>
