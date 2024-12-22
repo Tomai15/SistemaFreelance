@@ -37,24 +37,29 @@ class ProyectoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $datos = $request->validate([
-            "nombre_proyecto" => ["required"],
-            "descripcion" => ["required"]
-        ], [
-            "nombre_proyecto.required" => "Este campo es obligatorio!",
-            "descripcion.required" => "Este campo es obligatorio!"
-        ]);
+{
+    $datos = $request->validate([
+        "nombre_proyecto" => ["required"],
+        "descripcion" => ["required"]
+    ], [
+        "nombre_proyecto.required" => "Este campo es obligatorio!",
+        "descripcion.required" => "Este campo es obligatorio!"
+    ]);
 
-        //INSERT
-
+    try {
         $proyecto = Proyecto::create($datos);
-        //DB::insert("INSERT INTO proyectos (nombre_proyecto, descripcion) VALUES (?, ?)", [$request->nombre_proyecto, $request->descripcion]);
 
-        //REDIRECCION
-        //return redirect("/proyectos");
-        return response()->redirectTo("/proyectos");
+        session()->flash('success', 'El proyecto se ha creado exitosamente.');
+
+        return view('proyectos.create');
+    } catch (\Exception $e) {
+        \Log::error('Error creating project: ' . $e->getMessage());
+        
+        session()->flash('error', 'Hubo un error al crear el proyecto.');
+
+        return redirect()->back()->withInput();
     }
+}
 
     /**
      * Display the specified resource.

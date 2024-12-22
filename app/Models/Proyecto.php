@@ -23,7 +23,7 @@ class Proyecto extends Model
         'nivel_urgencia',
         'calificacion_trabajo' */
     ];
-  /*   public function casts(): array
+    public function casts(): array
     {
         return ['nivel_urgencia' => Urgencia::class, 'nivel_confidencialidad' => Confidencialidad::class];
     }
@@ -57,7 +57,7 @@ class Proyecto extends Model
         return $this->hasOne(PerfilDesarrollador::class);
     }
 
- */
+ 
 
     
 }

@@ -19,7 +19,7 @@ return new class extends Migration
         $table->integer('horas_estimadas')->nullable();
         $table->string('nivel_urgencia')->nullable();
         $table->integer('calificacion_trabajo')->nullable();
-        $table->foreignId('usuario_id')->constrained('usuario')->onDelete('cascade');
+        $table->foreignId('usuario_id')->nullable()->constrained('usuario')->onDelete('cascade');
         $table->foreign('nivel_urgencia')->references('value')->on('urgencia')->onDelete('cascade');
     });
 }
