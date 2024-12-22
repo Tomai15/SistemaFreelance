@@ -36,7 +36,7 @@ class LoginController extends Controller
         $datosUsuario["nombre_usuario"] = $datosUsuario["nombreUsuario"];
         unset($datosUsuario["nombreUsuario"]);
         Usuario::create($datosUsuario);
-        return response()->redirectTo("/home")->with("success","Se registro correctamente, inicie sesion");
+        return response()->redirectTo("/home")->with("successLogin","Se registro correctamente, inicie sesion");
 
     }
     public function  mostrarLogin(Request $request)

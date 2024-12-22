@@ -31,15 +31,15 @@
                             <a class="nav-link" href="#">Contacto</a>
                         </li>
                     </ul>
-                    @if (session()->has("success"))
+                    @if (session()->has("successLogin"))
                         <div class="container">
-                            <div class="alert alert-success text-center">{{ session("success") }}</div>
+                            <div class="alert alert-success text-center">{{ session("failLogin") }}</div>
                         </div>
                     @endif
 
-                    @if (session()->has("fail"))
+                    @if (session()->has("failLogin"))
                         <div class="container">
-                            <div class="alert alert-danger text-center">{{ session("fail") }}</div>
+                            <div class="alert alert-danger text-center">{{ session("failLogin") }}</div>
                         </div>
                     @endif
                     <div class="d-flex">

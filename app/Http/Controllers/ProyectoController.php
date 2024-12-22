@@ -53,7 +53,7 @@ class ProyectoController extends Controller
 
         return view('proyectos.create');
     } catch (\Exception $e) {
-        \Log::error('Error creating project: ' . $e->getMessage());
+        //\Log::error('Error creating project: ' . $e->getMessage());
         
         session()->flash('error', 'Hubo un error al crear el proyecto.');
 
