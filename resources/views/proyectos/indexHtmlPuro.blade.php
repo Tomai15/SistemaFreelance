@@ -15,7 +15,7 @@
         </li>
         <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
         <button class="search-button" id="searchButton">Buscar</button>
-        <a href="#" class="search-button proyectos-button">Crear Nuevo Proyecto</a>
+        <a href="/proyectos/create" class="search-button proyectos-button">Crear Nuevo Proyecto</a>
     </div>
 
     <!-- Sección de la tabla -->

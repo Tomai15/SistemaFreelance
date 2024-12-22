@@ -27,3 +27,7 @@ Route::controller(LoginController::class)->group(function()
 Route::get('/proyectos', function () {
     return view('proyectos.indexHtmlPuro');
 });
+
+Route::get('/proyectos/create', function () {
+    return view('proyectos.create');
+});

@@ -20,7 +20,7 @@
             <div class="row  my-5">
                 <div class="col-md-4">
                     <h2>Imagen más botón para ver el listado de proyectos</h2>
-                    <a href="#" class="btn btn-secondary btn-sm my-2">Ver Proyectos</a>
+                    <a href="/proyectos" class="btn btn-secondary btn-sm my-2">Ver Proyectos</a>
                 </div>
                 <div class="col-md-8">
                     <h3>Texto explicativo de la funcion</h3>
