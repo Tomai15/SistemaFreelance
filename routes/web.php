@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProyectoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,10 +25,10 @@ Route::controller(LoginController::class)->group(function()
 
 
 
-Route::get('/proyectos', function () {
-    return view('proyectos.indexHtmlPuro');
-});
+// Route::get('/proyectos', function () {
+//     return view('proyectos.index');
+// });
 
-Route::get('/proyectos/create', function () {
-    return view('proyectos.create');
-});
+Route::get('/proyectos', [ProyectoController::class, 'index']);
+Route::get('/proyectos/create', [ProyectoController::class, 'create']);
+Route::post('/proyectos', [ProyectoController::class, 'store']);

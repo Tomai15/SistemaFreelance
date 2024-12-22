@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Urgencia;
+use Confidencialidad;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,12 +18,12 @@ class Proyecto extends Model
     [
         'nombre_proyecto',
         'descripcion',
-        'url_documento_requerimientos',
+        /* 'url_documento_requerimientos',
         'horas_estimadas',
         'nivel_urgencia',
-        'calificacion_trabajo'
+        'calificacion_trabajo' */
     ];
-    public function casts(): array
+  /*   public function casts(): array
     {
         return ['nivel_urgencia' => Urgencia::class, 'nivel_confidencialidad' => Confidencialidad::class];
     }
@@ -55,7 +57,7 @@ class Proyecto extends Model
         return $this->hasOne(PerfilDesarrollador::class);
     }
 
-
+ */
 
     
 }

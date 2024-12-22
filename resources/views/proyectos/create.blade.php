@@ -1,20 +1,32 @@
 @include('layout.header')
 
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+       <h2>{{ $error }}</h2>
+    @endforeach
+@endif
+
 <main class="">
-    <div class="d-flex align-items-center text-gray">
+    <div class="d-flex align-items-center  text-gray">
         <div class="container m-5">
-            <form>
+            <form action="/proyectos" method="post">
                 <div class="mb-3 mx-5">
                     <label for="nombre_proyecto" class="form-label">Nombre del Proyecto</label>
-                    <input type="text" class="form-control" id="nombreProyecto" aria-describedby="projectHelp">
+                    <input value="{{ old('nombre_proyecto') }}" type="text" class="form-control" id="nombre_proyecto" name="nombre_proyecto" autocomplete="off" aria-describedby="projectHelp">
                     <div id="projectHelp" class="form-text">Cuéntanos que necesitas hecho.</div>
+                    @error('nombre_proyecto')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3 mx-5">
                     <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                    <textarea value="{{ old('descripcion') }}" class="form-control" id="descripcion" rows="4" name="descripcion" autocomplete="off"
                         aria-describedby="descripcionHelp"></textarea>
                     <div id="projectHelp" class="form-text">Ingrese algunas viñetas o descripción completa. Cuanto
                         más detallado, mejor.</div>
+                    @error('descripcion')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3 mx-5">
                     <label for="formFile" class="form-label">Documento de Requerimientos</label>
@@ -90,8 +102,7 @@
                 </div>
 
 
-
-                <button type="submit" class="btn btn-primary text-center">Crear</button>
+                <button class="btn btn-primary">Agregar</button>
             </form>
         </div>
 

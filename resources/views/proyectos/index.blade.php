@@ -17,7 +17,7 @@
         </li>
         <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
         <button class="search-button" id="searchButton">Buscar</button>
-        <a href="{{ route('proyectos.create') }}" class="search-button proyectos-button">Crear Nuevo Proyecto</a>
+        <a href="/proyectos/create" class="search-button proyectos-button">Crear Nuevo Proyecto</a>
     </div>
 
     <!-- Sección de la tabla -->
@@ -37,11 +37,11 @@
                     <!-- Repeatable row structure for each$proyecto -->
                     @foreach($proyectos as $proyecto)
                         <tr class="clickable-row" data-id="{{ $proyecto->id }}">
-                            <td>{{ $proyecto->titulo }}</td>
-                            <td>{{ $proyecto->tecnologia }}</td>
-                            <td>{{ $proyecto->horas }}</td>
+                            <td>{{ $proyecto->nombre_proyecto }}</td>
+                            <td>{{ $proyecto->descripcion }}</td>
+                            {{-- <td>{{ $proyecto->horas }}</td> --}}
                             <td>
-                                @switch($proyecto->urgencia)
+                             {{--    @switch($proyecto->urgencia)
                                     @case('alta')
                                         <span class="status urgency-high">Alta</span>
                                         @break
@@ -53,10 +53,10 @@
                                         @break
                                     @default
                                         <span class="status urgency-unknown">Desconocida</span>
-                                @endswitch
+                                @endswitch --}}
                             </td>
                             <td>
-                                @switch($proyecto->confidencialidad)
+                             {{--    @switch($proyecto->confidencialidad)
                                     @case('muyAlta')
                                         <span class="status confidentiality-high">Muy Alta</span>
                                         @break
@@ -71,7 +71,7 @@
                                         @break
                                     @default
                                         <span class="status urgency-unknown">Desconocida</span>
-                                @endswitch
+                                @endswitch --}}
                             </td>
                         </tr>
                     @endforeach
@@ -85,7 +85,7 @@
     </div>
 
     <!-- Sección de paginación -->
-    <div class="pagination">
+    {{-- <div class="pagination">
         <span class="report-count">PROYECTOS DISPONIBLES: {{ $totalProyectos }}</span>
         <span class="page-info">{{ $paginationStart }}-{{ $paginationEnd }} de {{ $totalProyectos }}</span>
         <div class="pagination-controls">
@@ -93,7 +93,7 @@
             <span class="current-page">{{ $currentPage }}/{{ $totalPages }}</span>
             <a class="pagination-button" href="{{ $nextPageUrl }}" @if($isLastPage) disabled @endif>➡</a>
         </div>
-    </div>
+    </div> --}}
 
 </div>
 
