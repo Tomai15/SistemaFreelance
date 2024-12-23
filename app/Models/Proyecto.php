@@ -20,6 +20,7 @@ class Proyecto extends Model
         'descripcion',
         // 'url_documento_requerimientos',
         'horas_estimadas',
+        'precio',
         'urgencia_id',
         'confidencialidad_id',
         'calificacion_trabajo'

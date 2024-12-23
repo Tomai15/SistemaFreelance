@@ -17,6 +17,7 @@ return new class extends Migration
         $table->text('descripcion')->nullable();
         $table->string('url_documento_requerimientos')->nullable();
         $table->integer('horas_estimadas')->nullable();
+        $table->integer('precio')->nullable();
         $table->integer('calificacion_trabajo')->nullable();
         $table->foreignId('usuario_id')->nullable()->constrained('usuario')->onDelete('cascade');
         $table->foreignId('urgencia_id')->nullable()->constrained('urgencia')->onDelete('cascade');
