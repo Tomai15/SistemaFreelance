@@ -18,14 +18,19 @@ class Proyecto extends Model
     [
         'nombre_proyecto',
         'descripcion',
-        /* 'url_documento_requerimientos',
+        // 'url_documento_requerimientos',
         'horas_estimadas',
-        'nivel_urgencia',
-        'calificacion_trabajo' */
+        'urgencia_id',
+        'confidencialidad_id',
+        'calificacion_trabajo'
     ];
-    public function casts(): array
+    public function urgenciaEstablecida(): HasOne
     {
-        return ['nivel_urgencia' => Urgencia::class, 'nivel_confidencialidad' => Confidencialidad::class];
+        return $this->hasOne(Urgencia::class);
+    }
+    public function confidencialidadEstablecida(): HasOne
+    {
+        return $this->hasOne(Confidencialidad::class);
     }
     public function tecnologias(): BelongsToMany
     {

@@ -1,8 +1,11 @@
 <?php
 
-enum Urgencia: String
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Confidencialidad extends Model
 {
-    case ALTO = 'ALTO';
-    case MEDIO = 'MEDIO';
-    case BAJO = 'BAJO';
-} 
+    protected $table = 'urgencia';
+    protected $fillable = ['nivel_urgencia'];
+}

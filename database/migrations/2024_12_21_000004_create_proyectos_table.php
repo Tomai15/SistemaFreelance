@@ -17,10 +17,10 @@ return new class extends Migration
         $table->text('descripcion')->nullable();
         $table->string('url_documento_requerimientos')->nullable();
         $table->integer('horas_estimadas')->nullable();
-        $table->string('nivel_urgencia')->nullable();
         $table->integer('calificacion_trabajo')->nullable();
         $table->foreignId('usuario_id')->nullable()->constrained('usuario')->onDelete('cascade');
-        $table->foreign('nivel_urgencia')->references('value')->on('urgencia')->onDelete('cascade');
+        $table->foreignId('urgencia_id')->nullable()->constrained('urgencia')->onDelete('cascade');
+        $table->foreignId('confidencialidad_id')->nullable()->constrained('confidencialidad')->onDelete('cascade');
     });
 }
 

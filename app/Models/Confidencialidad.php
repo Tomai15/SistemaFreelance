@@ -1,9 +1,11 @@
 <?php
 
-enum Confidencialidad: String
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Confidencialidad extends Model
 {
-    case MUYALTO = 'MUYALTO';
-    case ALTO = 'ALTO';
-    case MEDIO = 'MEDIO';
-    case BAJO = 'BAJO';
-} 
+    protected $table = 'confidencialidad';
+    protected $fillable = ['nivel_confidencialidad'];
+}

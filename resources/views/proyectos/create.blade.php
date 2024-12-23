@@ -1,7 +1,6 @@
 @include('layout.header')
 
 @if(session('success'))
-<!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center">
@@ -21,7 +20,6 @@
 @endif
 
     @if(session('error'))
-    <!-- Error Alert -->
     <div class="alert alert-danger mx-5">
         {{ session('error') }}
     </div>
@@ -77,7 +75,6 @@
                             <label for="horas_estimadas" class="form-label">Tecnologías de Preferencia</label>
                         </div>
                         <div class="col-md-12">
-                            <!-- Technology Checkboxes -->
                             @php
                                 $tecnologias = ['PHP', 'Java', 'Javascript', 'Kotlin', 'Laravel', 'React', 'Angular', 'Blade', 'Bootstrap', 'Vue'];
                             @endphp
@@ -99,7 +96,6 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Show Success Modal on Page Load -->
     <script>
         window.onload = function () {
             const modalElement = document.getElementById('successModal');

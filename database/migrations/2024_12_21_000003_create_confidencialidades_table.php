@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
     Schema::create('confidencialidad', function (Blueprint $table) {
-        $table->string('value')->primary(); 
+        $table->id();
+        $table->string('nivel_confidencialidad'); 
     });
 
     DB::table('confidencialidad')->insert([
-        ['value' => 'MUYALTO'],
-        ['value' => 'ALTO'],
-        ['value' => 'MEDIO'],
-        ['value' => 'BAJO'],
+        ['id' => 1, 'nivel_confidencialidad' => 'Bajo'],
+        ['id' => 2, 'nivel_confidencialidad' => 'Medio'],
+        ['id' => 3, 'nivel_confidencialidad' => 'Alto'],
+        ['id' => 4, 'nivel_confidencialidad' => 'Muy Alto'],
     ]);
     }
 

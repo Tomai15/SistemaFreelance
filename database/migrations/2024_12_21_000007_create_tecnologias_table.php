@@ -15,7 +15,21 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
         });
+
+        DB::table('tecnologia')->insert([
+            ['id' => 1 , 'nombre' => 'PHP'],
+            ['id' => 2 , 'nombre' => 'Java'],
+            ['id' => 3 , 'nombre' => 'Javascript'],
+            ['id' => 4 , 'nombre' => 'Kotlin'],
+            ['id' => 5 , 'nombre' => 'Laravel'],
+            ['id' => 6 , 'nombre' => 'React'],
+            ['id' => 7 , 'nombre' => 'Angular'],
+            ['id' => 8 , 'nombre' => 'Blade'],
+            ['id' => 9 , 'nombre' => 'Bootstrap'],
+            ['id' => 10 , 'nombre' => 'Vue'],
+        ]);
     }
+    //PHP Java Javascript Kotlin Laravel React Angular Blade Bootstrap Vue
 
     /**
      * Reverse the migrations.
