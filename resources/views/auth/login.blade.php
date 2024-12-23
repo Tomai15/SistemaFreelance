@@ -40,9 +40,9 @@
                 @error('password')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
-                @if(sesion()->has('login'))
-                <div class="alert alert-danger">{{session('login')}}</div>
-                @endif
+                @error('login')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
                 <!-- Recordarme y Olvidé mi contraseña -->
                 <div class="d-flex justify-content-between mb-3">
                     <div class="form-check">
