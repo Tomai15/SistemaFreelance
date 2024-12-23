@@ -33,7 +33,7 @@
                     </ul>
                     @if (session()->has("successLogin"))
                         <div class="container">
-                            <div class="alert alert-success text-center">{{ session("failLogin") }}</div>
+                            <div class="alert alert-success text-center">{{ session("successLogin") }}</div>
                         </div>
                     @endif
 
@@ -45,7 +45,7 @@
                     @if (session()->has('usuario'))
                     <div class="dropdown">
                         <button href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                          <img src="tu-foto.jpg" alt="Foto de perfil" class="rounded-circle" width="32" height="32">
+                          <img src="{{asset(session('usuario')->ruta_foto_usuario)}}" alt="Foto de perfil" class="rounded-circle" width="32" height="32">
                           <span class="ms-2">{{session('usuario')->nombre_usuario}}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">

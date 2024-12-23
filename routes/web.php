@@ -16,6 +16,7 @@ Route::controller(LoginController::class)->group(function()
 {
     Route::get('/register','mostrarRegistro');
     Route::get('/login','mostrarLogin');
+    Route::get('/logout','logOutUsuario');
     Route::post('/register','registrarUsuario');
     Route::post('login','logearUsuario');
 

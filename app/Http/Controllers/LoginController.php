@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Usuario;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -68,6 +69,12 @@ class LoginController extends Controller
         session(['usuario'=> $usuario]);
 
         return response()->redirectTo('/proyectos');
+    }
+    public function logOutUsuario(Request $request)
+    {
+        Auth::logout();
+        session()->forget('usuario');
+        return response()->redirectTo('/home');
     }
 
 }
