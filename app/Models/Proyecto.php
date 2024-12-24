@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Urgencia;
-use Confidencialidad;
+use App\Models\Urgencia;
+use App\Models\Confidencialidad;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -27,11 +27,11 @@ class Proyecto extends Model
     ];
     public function urgenciaEstablecida(): HasOne
     {
-        return $this->hasOne(Urgencia::class);
+        return $this->hasOne(Urgencia::class, 'id', 'urgencia_id');
     }
     public function confidencialidadEstablecida(): HasOne
     {
-        return $this->hasOne(Confidencialidad::class);
+        return $this->hasOne(Confidencialidad::class, 'id', 'confidencialidad_id');
     }
     public function tecnologias(): BelongsToMany
     {

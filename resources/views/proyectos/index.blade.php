@@ -34,44 +34,44 @@
             </thead>
             <tbody>
                 @if($proyectos->count())
-                    <!-- Repeatable row structure for each$proyecto -->
+                    <!-- Filas repetidas para cada $proyecto -->
                     @foreach($proyectos as $proyecto)
                         <tr class="clickable-row" data-id="{{ $proyecto->id }}">
                             <td>{{ $proyecto->nombre_proyecto }}</td>
                             <td>{{ $proyecto->descripcion }}</td>
-                            {{-- <td>{{ $proyecto->horas }}</td> --}}
+                            <td>{{ $proyecto->horas_estimadas }}</td>
                             <td>
-                             {{--    @switch($proyecto->urgencia)
-                                    @case('alta')
-                                        <span class="status urgency-high">Alta</span>
+                                @switch($proyecto->urgenciaEstablecida->nivel_urgencia)
+                                    @case('Alto')
+                                        <span class="status urgency-high">Alto</span>
                                         @break
-                                    @case('media')
-                                        <span class="status urgency-medium">Media</span>
+                                    @case('Medio')
+                                        <span class="status urgency-medium">Medio</span>
                                         @break
-                                    @case('baja')
-                                        <span class="status urgency-low">Baja</span>
+                                    @case('Bajo')
+                                        <span class="status urgency-low">Bajo</span>
                                         @break
                                     @default
-                                        <span class="status urgency-unknown">Desconocida</span>
-                                @endswitch --}}
+                                        <span class="status urgency-unknown">Desconocido</span>
+                                @endswitch
                             </td>
                             <td>
-                             {{--    @switch($proyecto->confidencialidad)
-                                    @case('muyAlta')
-                                        <span class="status confidentiality-high">Muy Alta</span>
+                                @switch($proyecto->confidencialidadEstablecida->nivel_confidencialidad)
+                                    @case('Muy Alto')
+                                        <span class="status confidentiality-high">Muy Alto</span>
                                         @break
-                                    @case('alta')
-                                        <span class="status confidentiality-high">Alta</span>
+                                    @case('Alto')
+                                        <span class="status confidentiality-high">Alto</span>
                                         @break
-                                    @case('media')
-                                        <span class="status confidentiality-medium">Media</span>
+                                    @case('Medio')
+                                        <span class="status confidentiality-medium">Medio</span>
                                         @break
-                                    @case('baja')
-                                        <span class="status confidentiality-low">Baja</span>
+                                    @case('Bajo')
+                                        <span class="status confidentiality-low">Bajo</span>
                                         @break
                                     @default
-                                        <span class="status urgency-unknown">Desconocida</span>
-                                @endswitch --}}
+                                        <span class="status urgency-unknown">Desconocido</span>
+                                @endswitch
                             </td>
                         </tr>
                     @endforeach
@@ -84,16 +84,11 @@
         </table>
     </div>
 
-    <!-- Sección de paginación -->
-    {{-- <div class="pagination">
-        <span class="report-count">PROYECTOS DISPONIBLES: {{ $totalProyectos }}</span>
-        <span class="page-info">{{ $paginationStart }}-{{ $paginationEnd }} de {{ $totalProyectos }}</span>
-        <div class="pagination-controls">
-            <a class="pagination-button" href="{{ $previousPageUrl }}" @if($isFirstPage) disabled @endif>⬅</a>
-            <span class="current-page">{{ $currentPage }}/{{ $totalPages }}</span>
-            <a class="pagination-button" href="{{ $nextPageUrl }}" @if($isLastPage) disabled @endif>➡</a>
+    <div class="pagination-container">
+        <div class="pagination d-flex justify-content-between align-items-center">
+            {{ $proyectos->links() }}
         </div>
-    </div> --}}
+    </div>
 
 </div>
 

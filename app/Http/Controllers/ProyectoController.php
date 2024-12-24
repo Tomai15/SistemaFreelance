@@ -13,7 +13,7 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        $proyectos = Proyecto::all();
+        $proyectos = Proyecto::paginate(10);
 
         $parametros = [
             "proyectos" => $proyectos
