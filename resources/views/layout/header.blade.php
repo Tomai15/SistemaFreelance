@@ -49,7 +49,7 @@
                           <span class="ms-2">{{session('usuario')->nombre_usuario}}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                          <li><a class="dropdown-item" href="/perfil">Editar perfil</a></li>
+                          <li><a class="dropdown-item" href="/crearPerfil">Editar perfil</a></li>
                           <li><a class="dropdown-item" href="/configuracion">Configuración</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>

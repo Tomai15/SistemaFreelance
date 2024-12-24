@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PerfilDesarrolladorController;
 use App\Http\Controllers\ProyectoController;
 
 Route::get('/', function () {
@@ -21,6 +22,12 @@ Route::controller(LoginController::class)->group(function()
     Route::post('login','logearUsuario');
 
 });
+
+Route::controller(PerfilDesarrolladorController::class)->group(function()
+{
+    Route::get('/crearPerfil','crearPerfil');
+}
+);
 
 
 
