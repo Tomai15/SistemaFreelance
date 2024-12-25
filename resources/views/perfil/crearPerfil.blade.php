@@ -1,6 +1,14 @@
 @include('layout.header')
 
 <div class="container mt-5 mb-5">
+    @if (is_null(session('usuario')->perfilDesarrollador()))
+        <div class="container">
+            <div class="alert alert-success text-center">
+                Aun no tiene un perfil como desarrollador.
+                Cree uno para postularse a proyectos.
+            </div>
+        </div>
+    @endif
     <h1 class="mb-4">Cree su perfil</h1>
     <form>
         <!-- Nombre -->
@@ -23,13 +31,11 @@
 
         <!-- Lista desplegable -->
         <div class="mb-3">
-            <label for="habilidades" class="form-label">Selecciona tus habilidades</label>
+            <label for="habilidades" class="form-label">Selecciona las tecnologias que conoces</label>
             <select class="form-select" id="habilidades" name="habilidades[]" multiple required>
-                <option value="Programación">Programación</option>
-                <option value="Diseño">Diseño</option>
-                <option value="Gestión de proyectos">Gestión de proyectos</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Escritura técnica">Escritura técnica</option>
+                @forEach($tecnologias as $tecnologia)
+                    <option value="{{$tecnologia->nombre}}">{{$tecnologia->nombre}}</option>
+                @endforEach
             </select>
             <small class="form-text text-muted">Selecciona varias opciones presionando Ctrl o Cmd.</small>
         </div>
