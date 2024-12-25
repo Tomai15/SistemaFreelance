@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
     <link rel="stylesheet" href="{{asset('css/tablaProyectos.css')}}">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <header>
@@ -46,13 +45,13 @@
                     @endif
                     @if (session()->has('usuario'))
                     <div class="dropdown">
-                        <button href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                           <img src="{{asset(session('usuario')->ruta_foto_usuario)}}" alt="Foto de perfil" class="rounded-circle" width="32" height="32">
                           <span class="ms-2">{{session('usuario')->nombre_usuario}}</span>
-                        </button>
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                           <li><a class="dropdown-item" href="/crearPerfil">Editar perfil</a></li>
-                          <li><a class="dropdown-item" href="/configuracion">Configuración</a></li>
+                          <li><a class="dropdown-item" href="/configuracion">Gestionar mis trabajos</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
                         </ul>

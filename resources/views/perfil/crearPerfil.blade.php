@@ -1,6 +1,14 @@
 @include('layout.header')
 
 <div class="container mt-5 mb-5">
+    @if (is_null(session('usuario')->perfilDesarrollador()))
+        <div class="container">
+            <div class="alert alert-success text-center">
+                Aun no tiene un perfil como desarrollador.
+                Cree uno para postularse a proyectos.
+            </div>
+        </div>
+    @endif
     <h1 class="mb-4">Cree su perfil</h1>
     <form>
         <!-- Nombre -->
