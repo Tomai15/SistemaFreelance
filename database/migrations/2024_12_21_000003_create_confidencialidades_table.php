@@ -17,10 +17,10 @@ return new class extends Migration
     });
 
     DB::table('confidencialidad')->insert([
-        ['id' => 1, 'nivel_confidencialidad' => 'Bajo'],
-        ['id' => 2, 'nivel_confidencialidad' => 'Medio'],
-        ['id' => 3, 'nivel_confidencialidad' => 'Alto'],
-        ['id' => 4, 'nivel_confidencialidad' => 'Muy Alto'],
+        ['id' => 1, 'nivel_confidencialidad' => 'Baja'],
+        ['id' => 2, 'nivel_confidencialidad' => 'Media'],
+        ['id' => 3, 'nivel_confidencialidad' => 'Alta'],
+        ['id' => 4, 'nivel_confidencialidad' => 'Muy Alta'],
     ]);
     }
 

@@ -35,7 +35,7 @@ class Proyecto extends Model
     }
     public function tecnologias(): BelongsToMany
     {
-        return $this->belongsToMany(Tecnologia::class,'tecnologia_por_proyecto');
+        return $this->belongsToMany(Tecnologia::class,'tecnologia_por_proyecto', 'proyecto_id', 'tecnologia_id');
     }
 
     public function estadosProyecto(): HasMany

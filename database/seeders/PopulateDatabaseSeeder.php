@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Usuario;
 use App\Models\Proyecto;
 use App\Models\Urgencia;
+use App\Models\Tecnologia;
 use App\Models\Confidencialidad;
 
 class PopulateDatabaseSeeder extends Seeder
@@ -58,7 +59,13 @@ class PopulateDatabaseSeeder extends Seeder
     {   
         $usuarios = \App\Models\Usuario::pluck('id')->toArray();
         if (empty($usuarios)) {
-            $this->error("No users found. Please seed the Usuario table first.");
+            $this->error("No se han encontrado usuarios.");
+            return;
+        }
+
+        $tecnologias = \App\Models\Tecnologia::pluck('id')->toArray();
+        if (empty($tecnologias)) {
+            $this->command->error("No se han encontrado tecnologías.");
             return;
         }
 
@@ -71,6 +78,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "urgencia_id" => 2,
                 "confidencialidad_id" => 3,
                 "usuario_id" => $usuarios[array_rand($usuarios)],
+                "tecnologias" => [2, 4, 5, 6],
             ],
             [
                 "nombre_proyecto" => "Proyecto B",
@@ -80,6 +88,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "urgencia_id" => 3,
                 "confidencialidad_id" => 4,
                 "usuario_id" => $usuarios[array_rand($usuarios)],
+                "tecnologias" => [1, 3, 5],
             ],
             [
                 "nombre_proyecto" => "Proyecto C",
@@ -89,11 +98,20 @@ class PopulateDatabaseSeeder extends Seeder
                 "urgencia_id" => 1,
                 "confidencialidad_id" => 1,
                 "usuario_id" => $usuarios[array_rand($usuarios)],
+                "tecnologias" => [6, 7],
             ],
         ];
 
-        foreach ($projects as $project) {
-            Proyecto::firstOrCreate(['nombre_proyecto' => $project['nombre_proyecto']], $project);
+        foreach ($projects as $projectData) {
+            $tecnologiasForProject = $projectData['tecnologias'];
+            unset($projectData['tecnologias']);
+
+            $project = Proyecto::firstOrCreate(
+                ['nombre_proyecto' => $projectData['nombre_proyecto']],
+                $projectData
+            );
+
+            $project->tecnologias()->sync($tecnologiasForProject);
         }
     }
 }

@@ -17,9 +17,9 @@ return new class extends Migration
         });
     
         DB::table('urgencia')->insert([
-            ['id' => 1, 'nivel_urgencia' => 'Bajo'],
-            ['id' => 2, 'nivel_urgencia' => 'Medio'],
-            ['id' => 3, 'nivel_urgencia' => 'Alto'],
+            ['id' => 1, 'nivel_urgencia' => 'Baja'],
+            ['id' => 2, 'nivel_urgencia' => 'Media'],
+            ['id' => 3, 'nivel_urgencia' => 'Alta'],
         ]);
     }
 
