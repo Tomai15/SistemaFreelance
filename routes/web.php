@@ -26,6 +26,7 @@ Route::controller(LoginController::class)->group(function()
 Route::controller(PerfilDesarrolladorController::class)->group(function()
 {
     Route::get('/crearPerfil','crearPerfil');
+    Route::post('/crearPerfil','guardarPerfil');
 }
 );
 

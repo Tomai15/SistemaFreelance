@@ -13,4 +13,8 @@ class PerfilDesarrolladorController extends Controller
         // compact('tecnologias') == ['tecnologias' => $tecnologias]
         return view('perfil.crearPerfil',compact('tecnologias'));
     }
+    public function guardarPefil(Request $request)
+    {
+        $datosValidados = 
+    }
 }

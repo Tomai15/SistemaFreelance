@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->integer('promedio_calificacion')->nullable();
+            $table->foreignId('id_usuario');
         });
     }
 

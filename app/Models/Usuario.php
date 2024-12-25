@@ -20,7 +20,7 @@ class Usuario extends Authenticatable
     }
     public function perfilDesarrollador(): HasOne
     {
-        return $this->hasOne(PerfilDesarrollador::class);
+        return $this->hasOne(PerfilDesarrollador::class,'id_usuario');
     }
     
     protected $fillable = [

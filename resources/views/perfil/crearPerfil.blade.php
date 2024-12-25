@@ -1,7 +1,7 @@
 @include('layout.header')
 
 <div class="container mt-5 mb-5">
-    @if (is_null(session('usuario')->perfilDesarrollador()))
+    @if (is_null(session('usuario')->perfilDesarrollador))
         <div class="container">
             <div class="alert alert-success text-center">
                 Aun no tiene un perfil como desarrollador.
@@ -10,7 +10,8 @@
         </div>
     @endif
     <h1 class="mb-4">Cree su perfil</h1>
-    <form>
+    <form action="/crearPerfil" method="POST">
+        @csrf
         <!-- Nombre -->
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
@@ -51,8 +52,6 @@
     </form>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     // Referencias a los elementos del DOM
     const habilidadesSelect = document.getElementById('habilidades');
