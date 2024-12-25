@@ -56,12 +56,13 @@
                             <input type="number" class="form-control" id="horasEstimadas" placeholder="hs">
                         </div>
                         <div class="col-md-4">
-                            <label for="inputState" class="form-label">Nivel de Urgencia</label>
-                            <select id="inputState" class="form-select" name="nivel_urgencia">
-                                <option selected>Choose...</option>
-                                <option>Alto</option>
-                                <option>Medio</option>
-                                <option>Bajo</option>
+                            <label for="urgencia" class="form-label">Nivel de Urgencia</label>
+                             <select id="urgencia" class="form-select" name="urgencia_id">
+                                <option value="" disabled selected>Seleccione una opción</option>
+                                @foreach($urgencias as $urgencia)
+                                    <option value="{{ $urgencia->id }}">{{ $urgencia->nivel_urgencia }}</option>
+                                @endforeach
+                             
                             </select>
                         </div>
                         <div class="col-md-2">

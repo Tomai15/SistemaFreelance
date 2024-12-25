@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Urgencia;
 
 class ProyectoController extends Controller
 {
@@ -67,8 +68,10 @@ class ProyectoController extends Controller
      */
     public function create()
     {
-        return view("proyectos.create");
+        $urgencias = Urgencia::all();
+        return view("proyectos.create",['urgencias' => $urgencias]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -80,10 +83,12 @@ class ProyectoController extends Controller
     {
         $datos = $request->validate([
             "nombre_proyecto" => ["required"],
-            "descripcion" => ["required"]
+            "descripcion" => ["required"],
+            "urgencia_id" => ["required"]
         ], [
             "nombre_proyecto.required" => "Este campo es obligatorio!",
-            "descripcion.required" => "Este campo es obligatorio!"
+            "descripcion.required" => "Este campo es obligatorio!",
+            "urgencia_id.required" => "Debe seleccionar una opcion del campo!"
         ]);
 
         try {
