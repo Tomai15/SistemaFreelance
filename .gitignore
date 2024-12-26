@@ -1,5 +1,4 @@
 /.phpunit.cache
-/config/database.php
 /node_modules
 /public/build
 /public/hot
@@ -7,7 +6,6 @@
 /storage/*.key
 /storage/pail
 /vendor
-composer.lock
 .env
 .env.backup
 .env.production
@@ -23,3 +21,5 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+composer.lock
+config/database.php

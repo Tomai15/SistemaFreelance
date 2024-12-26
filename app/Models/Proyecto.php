@@ -18,7 +18,7 @@ class Proyecto extends Model
     [
         'nombre_proyecto',
         'descripcion',
-        // 'url_documento_requerimientos',
+        'url_documento_requerimientos',
         'horas_estimadas',
         'precio',
         'urgencia_id',

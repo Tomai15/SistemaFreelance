@@ -30,14 +30,9 @@ Route::controller(PerfilDesarrolladorController::class)->group(function()
 }
 );
 
-
-
-
-
-// Route::get('/proyectos', function () {
-//     return view('proyectos.index');
-// });
-
-Route::get('/proyectos', [ProyectoController::class, 'index']);
-Route::get('/proyectos/create', [ProyectoController::class, 'create']);
-Route::post('/proyectos', [ProyectoController::class, 'store']);
+Route::controller(ProyectoController::class)->group(function () {
+    Route::get('/proyectos', 'index')->name('proyectos.index');
+    Route::get('/proyectos/create', 'create')->name('proyectos.create');
+    Route::post('/proyectos', 'store')->name('proyectos.store');
+    Route::get('/proyectos/{id}', 'show')->name('proyectos.show');
+});

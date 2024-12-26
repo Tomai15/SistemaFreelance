@@ -104,19 +104,28 @@ td {
     text-align: left;
 }
 
-td:first-child {
+#tabla-proyectos th:first-child,
+#tabla-proyectos td:first-child {
     word-wrap: break-word;
     white-space: normal;
-    max-width: 200px;
+    max-width: 300px;
+    width: 30%;
     overflow-wrap: break-word;
 }
 
-td:last-child {
+
+#tabla-proyectos td:nth-child(3),
+#tabla-proyectos td:nth-child(4),
+#tabla-proyectos td:nth-child(5),
+#tabla-proyectos td:last-child {
     padding-right: 8px;
     text-align: center;
 }
 
-th:last-child {
+#tabla-proyectos th:nth-child(3),
+#tabla-proyectos th:nth-child(4),
+#tabla-proyectos th:nth-child(5),
+#tabla-proyectos th:last-child {
     padding-right: 8px;
     text-align: center;
 }

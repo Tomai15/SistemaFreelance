@@ -82,12 +82,13 @@
     </div>
 
     <!-- Sección de la tabla -->
-    <div class="table-container">
+    <div class="table-container" id="tabla-proyectos">
         <table>
             <thead>
                 <tr>
                     <th>TÍTULO</th>
-                    <th>TECNOLOGÍA</th>
+                    <th>TECNOLOGÍAS</th>
+                    <th>PRECIO (USD)</th>
                     <th>CANT HS EST.</th>
                     <th>URGENCIA</th>
                     <th>CONFIDENCIALIDAD</th>
@@ -97,9 +98,21 @@
                 @if($proyectos->count())
                     <!-- Filas repetidas para cada $proyecto -->
                     @foreach($proyectos as $proyecto)
-                        <tr class="clickable-row" data-id="{{ $proyecto->id }}">
-                            <td>{{ $proyecto->nombre_proyecto }}</td>
-                            <td>{{ $proyecto->descripcion }}</td>
+                    <tr class="clickable-row" onclick="window.location.href='/proyectos/{{ $proyecto->id }}'">
+                            <td>{{ \Illuminate\Support\Str::limit($proyecto->nombre_proyecto, 40, '...') }}</td>
+                            <td>
+                                @php
+                                    $tecnologias = $proyecto->tecnologias->pluck('nombre');
+                                    $visibleTecnologias = $tecnologias->take(3);
+                                    $remainingCount = $tecnologias->count() - $visibleTecnologias->count();
+                                @endphp
+                            
+                                {{ $visibleTecnologias->join(', ') }}
+                                @if ($remainingCount > 0)
+                                    y {{ $remainingCount }} más
+                                @endif
+                            </td>
+                            <td>{{ $proyecto->precio }}</td>
                             <td>{{ $proyecto->horas_estimadas }}</td>
                             <td>
                                 @switch($proyecto->urgenciaEstablecida->nivel_urgencia)
