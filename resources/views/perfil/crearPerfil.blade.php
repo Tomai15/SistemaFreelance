@@ -10,7 +10,7 @@
         </div>
     @endif
     <h1 class="mb-4">Cree su perfil</h1>
-    <form action="/crearPerfil" method="POST">
+    <form action="/crearPerfil" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Nombre -->
         <div class="mb-3">
@@ -30,10 +30,16 @@
             <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Cuéntanos sobre ti" required></textarea>
         </div>
 
+        <!-- Campo para subir foto -->
+        <div class="mb-3">
+            <label for="foto" class="form-label">Subir foto de perfil</label>
+            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+        </div>
+
         <!-- Lista desplegable -->
         <div class="mb-3">
-            <label for="habilidades" class="form-label">Selecciona las tecnologias que conoces</label>
-            <select class="form-select" id="habilidades" name="habilidades[]" multiple required>
+            <label for="tecnologias" class="form-label">Selecciona las tecnologias que conoces</label>
+            <select class="form-select" id="tecnologias" name="tecnologias[]" multiple required>
                 @forEach($tecnologias as $tecnologia)
                     <option value="{{$tecnologia->nombre}}">{{$tecnologia->nombre}}</option>
                 @endforEach
@@ -54,16 +60,16 @@
 
 <script>
     // Referencias a los elementos del DOM
-    const habilidadesSelect = document.getElementById('habilidades');
+    const tecnologiasSelect = document.getElementById('tecnologias');
     const nivelesConocimientoDiv = document.getElementById('nivelesConocimiento');
 
-    // Evento para detectar cambios en la selección de habilidades
-    habilidadesSelect.addEventListener('change', () => {
+    // Evento para detectar cambios en la selección de tecnologias
+    tecnologiasSelect.addEventListener('change', () => {
         // Limpia el contenido previo
         nivelesConocimientoDiv.innerHTML = '';
 
         // Itera sobre las opciones seleccionadas
-        Array.from(habilidadesSelect.selectedOptions).forEach(option => {
+        Array.from(tecnologiasSelect.selectedOptions).forEach(option => {
             const habilidad = option.value;
 
             // Crea una fila para la habilidad y su nivel
@@ -84,6 +90,5 @@
         });
     });
 </script>
-
 
 @include('layout.footer')
