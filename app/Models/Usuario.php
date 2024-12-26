@@ -18,6 +18,7 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany(Proyecto::class);
     }
+
     public function perfilDesarrollador(): HasOne
     {
         return $this->hasOne(PerfilDesarrollador::class,'id_usuario');

@@ -107,13 +107,16 @@ class ProyectoController extends Controller
         ]);
 
         try {
-            $proyecto = Proyecto::create($datos);
-            $proyecto->tecnologias()->attach($request->tecnologias);
+            $usuarioEnSesion = session("usuario");
+            $nuevoProyecto = $usuarioEnSesion->proyectos()->create($datos);
+
+            //$proyecto = Proyecto::create($datos);
+            $nuevoProyecto->tecnologias()->attach($request->tecnologias);
             
 
             session()->flash('success', 'El proyecto se ha creado exitosamente.');
 
-            return view('proyectos.create');
+            return view('proyectos');
         } catch (\Exception $e) {
             //\Log::error('Error creating project: ' . $e->getMessage());
             
