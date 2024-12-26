@@ -35,7 +35,7 @@ class LoginController extends Controller
         );
         $datosUsuario["password"] = bcrypt($datosUsuario["password"]);
         $datosUsuario["nombre_usuario"] = $datosUsuario["nombreUsuario"];
-        $datosUsuario["ruta_foto_usuario"] = 'fotosPerfil/fotoDefecto.jpg';
+        $datosUsuario["ruta_foto_usuario"] = 'storage/fotosPerfil/fotoDefecto.jpg';
         unset($datosUsuario["nombreUsuario"]);
         Usuario::create($datosUsuario);
         return response()->redirectTo("/home")->with("successLogin","Se registro correctamente, inicie sesion");
