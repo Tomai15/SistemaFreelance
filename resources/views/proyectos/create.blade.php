@@ -54,6 +54,9 @@
                         <div class="col-md-4">
                             <label for="horas_estimadas" class="form-label">Horas Estimadas</label>
                             <input type="number" class="form-control" id="horasEstimadas" name="horas_estimadas" placeholder="hs">
+                            @error('horas_estimadas')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label for="urgencia" class="form-label">Nivel de Urgencia</label>
@@ -64,6 +67,9 @@
                                 @endforeach
                              
                             </select>
+                            @error('urgencia_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label for="confidencialidad" class="form-label">Nivel de Confidencialidad</label>
@@ -74,11 +80,13 @@
                                 @endforeach
                              
                             </select>
+                            @error('confidencialidad_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="row g-1 mx-5 mb-3">
-                        
                         <div class="col-md-8 me-5">
                             <label for="tecnologias" class="form-label">Tecnologías de Preferencia</label>
                             <br>
@@ -87,21 +95,16 @@
                                     <option value="{{ $tecnologia->id }}">{{ $tecnologia->nombre }}</option>
                                 @endforeach
                             </select>
-                        
-                            {{-- <br>
-                            @php
-                                $tecnologias = ['PHP', 'Java', 'Javascript', 'Kotlin', 'Laravel', 'React', 'Angular', 'Blade', 'Bootstrap', 'Vue'];
-                            @endphp
-                            @foreach ($tecnologias as $tecnologia)
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="checkbox{{ $tecnologia }}" value="{{ $tecnologia }}" name="tecnologias[]">
-                                    <label class="form-check-label" for="checkbox{{ $tecnologia }}">{{ $tecnologia }}</label>
-                                </div>
-                            @endforeach --}}
+                            @error('tecnologias[]')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-md-2 ">
                             <label for="precio" class="form-label">Precio</label>
                             <input type="text" class="form-control" id="precio" name="precio" placeholder="$">
+                            @error('precio')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
         

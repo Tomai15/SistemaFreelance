@@ -98,7 +98,7 @@ class ProyectoController extends Controller
             "urgencia_id" => ["required"],
             'confidencialidad_id' => ["required"],
             'horas_estimadas' => ["required"],
-            'precio' => ["required"],
+            'precio' => ["required",'numeric'],
             'tecnologias' => ['required', 'array'],
         ], [
             "nombre_proyecto.required" => "Este campo es obligatorio!",
