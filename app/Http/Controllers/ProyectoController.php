@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proyecto;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Urgencia;
+use App\Models\Tecnologia;
+use Illuminate\Http\Request;
+use App\Models\Confidencialidad;
+use App\Http\Controllers\Controller;
 
 class ProyectoController extends Controller
 {
@@ -69,7 +71,16 @@ class ProyectoController extends Controller
     public function create()
     {
         $urgencias = Urgencia::all();
-        return view("proyectos.create",['urgencias' => $urgencias]);
+        $confidencialidades = Confidencialidad::all();
+        $tecnologias = Tecnologia::all(); 
+
+        $parametros = [
+            'urgencias' => $urgencias,
+            'confidencialidades' => $confidencialidades,
+            'tecnologias' => $tecnologias
+        ];
+
+        return view("proyectos.create", $parametros);
     }
 
 
@@ -84,7 +95,11 @@ class ProyectoController extends Controller
         $datos = $request->validate([
             "nombre_proyecto" => ["required"],
             "descripcion" => ["required"],
-            "urgencia_id" => ["required"]
+            "urgencia_id" => ["required"],
+            'confidencialidad_id' => ["required"],
+            'horas_estimadas' => ["required"],
+            'precio' => ["required"],
+            'tecnologias' => ['required', 'array'],
         ], [
             "nombre_proyecto.required" => "Este campo es obligatorio!",
             "descripcion.required" => "Este campo es obligatorio!",
@@ -93,6 +108,8 @@ class ProyectoController extends Controller
 
         try {
             $proyecto = Proyecto::create($datos);
+            $proyecto->tecnologias()->attach($request->tecnologias);
+            
 
             session()->flash('success', 'El proyecto se ha creado exitosamente.');
 
