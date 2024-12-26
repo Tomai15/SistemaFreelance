@@ -37,7 +37,7 @@ class PerfilDesarrolladorController extends Controller
         $nivelesTecnolgias = $datosUsuario['nivel'];
         
         //Almaceno la nueva foto de perfil
-        $rutaFoto = "storage/" . $datosUsuario['foto']->store('/fotosPerfil');
+        $rutaFoto = "storage/" . $datosUsuario['foto']->store('/fotosPerfil','public');
 
         $nuevasTecnologiasGuardar = [];
         //Borro del array de datos del usuario las tecnologias nivel y foto porque hay
