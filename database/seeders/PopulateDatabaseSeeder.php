@@ -10,6 +10,7 @@ use App\Models\PerfilDesarrollador;
 use App\Models\Urgencia;
 use App\Models\Tecnologia;
 use App\Models\Confidencialidad;
+use App\Models\EstadoPorProyecto;
 
 class PopulateDatabaseSeeder extends Seeder
 {
@@ -263,13 +264,29 @@ class PopulateDatabaseSeeder extends Seeder
         foreach ($projects as $projectData) {
             $tecnologiasForProject = $projectData['tecnologias'];
             unset($projectData['tecnologias']);
-
+    
             $project = Proyecto::firstOrCreate(
                 ['nombre_proyecto' => $projectData['nombre_proyecto']],
                 $projectData
             );
-
+    
             $project->tecnologias()->sync($tecnologiasForProject);
+    
+            // Estado inicial 'Abierto' establecido pero en el pasado
+            EstadoPorProyecto::create([
+                'proyecto_id' => $project->id,
+                'tipo_estado_id' => 1, 
+                'created_at' => now()->subDays(3),
+            ]);
+    
+            // Si el proyecto tiene un desarrollador se le pone estado 'En Curso'
+            if ($project->perfil_desarrollador_id) {
+                EstadoPorProyecto::create([
+                    'proyecto_id' => $project->id,
+                    'tipo_estado_id' => 2, 
+                    'created_at' => now(), 
+                ]);
+            }
         }
     }
 }

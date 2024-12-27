@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('estado_por_proyecto', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proyecto_id')->constrained('proyecto')->onDelete('cascade');
-            $table->foreignId('tipo_estado_id')->constrained('tipo_estado_proyecto')->onDelete('cascade'); 
+            $table->foreignId('tipo_estado_id')->constrained('tipo_estado')->onDelete('cascade'); 
             $table->timestamps();
         });
     }

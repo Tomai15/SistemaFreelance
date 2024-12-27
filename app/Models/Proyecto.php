@@ -38,14 +38,14 @@ class Proyecto extends Model
         return $this->belongsToMany(Tecnologia::class,'tecnologia_por_proyecto', 'proyecto_id', 'tecnologia_id');
     }
 
-    public function estadosProyecto(): HasMany
+    public function estadosPorProyecto(): HasMany
     {
-        return $this->hasMany(EstadoProyecto::class);
+        return $this->hasMany(EstadoPorProyecto::class, 'proyecto_id');
     }
 
     public function estadoActual(): HasOne
     {
-        return $this->estadosProyecto()->one()->latestOfMany();
+        return $this->hasOne(EstadoPorProyecto::class, 'proyecto_id')->latestOfMany('establecido_el');
     }
 
     public function tagsBusqueda(): BelongsToMany
