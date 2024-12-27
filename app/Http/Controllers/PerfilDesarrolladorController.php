@@ -71,6 +71,9 @@ class PerfilDesarrolladorController extends Controller
         
         //Guardo el cambio de foto de perfil en el usuario
         $usuarioEnSesion->save();
+        $usuarioEnSesion->refresh();
+        session()->forget('usuario');
+        session(['usuario' => $usuarioEnSesion]);
 
         return response()->redirectTo("/proyectos");
 
