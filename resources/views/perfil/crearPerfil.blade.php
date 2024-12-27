@@ -15,25 +15,37 @@
         <!-- Nombre -->
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+            <input value="{{old('nombre')}}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+            @error('nombre')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <!-- Apellido -->
         <div class="mb-3">
             <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Escribe tu apellido" required>
+            <input value="{{old('apellido')}}" type="text" class="form-control" id="apellido" name="apellido" placeholder="Escribe tu apellido" required>
+            @error('apellido')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <!-- Descripción -->
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción sobre ti</label>
-            <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Cuéntanos sobre ti" required></textarea>
+            <textarea value="{{old('descripcion')}}" class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Cuéntanos sobre ti" required></textarea>
+            @error('descripcion')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <!-- Campo para subir foto -->
         <div class="mb-3">
             <label for="foto" class="form-label">Subir foto de perfil</label>
             <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+            @error('foto')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <!-- Lista desplegable -->
