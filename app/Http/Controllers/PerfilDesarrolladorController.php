@@ -11,10 +11,15 @@ use Illuminate\Validation\Rules\File;
 class PerfilDesarrolladorController extends Controller
 {
     public function crearPerfil(Request $request)
-    {
+    {       
         $tecnologias = Tecnologia::all();
-        // compact('tecnologias') == ['tecnologias' => $tecnologias]
-        return view('perfil.crearPerfil',compact('tecnologias'));
+        if(!isset(session('usuario')->perfilDesarrollador))
+        {
+            
+            // compact('tecnologias') == ['tecnologias' => $tecnologias]
+            return view('perfil.crearPerfil',compact('tecnologias'));  
+        }
+        return view('perfil.editarPerfil',compact('tecnologias'));
     }
     public function guardarPerfil(Request $request)
     {
@@ -23,7 +28,7 @@ class PerfilDesarrolladorController extends Controller
             [
                 "nombre" => ['string','required'],
                 "apellido" => ['string','required'],
-                "descripcion" => ['string','required'],
+                "descripcion_sobre_mi" => ['string','required'],
                 "foto" => ['required',File::image()],
                 'tecnologias' => 'required|array',
                 'tecnologias.*' => 'string',

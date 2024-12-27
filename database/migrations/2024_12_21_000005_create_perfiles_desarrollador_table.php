@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); // Primary Key
             $table->string('nombre');
             $table->string('apellido');
+            $table->text('descripcion_sobre_mi')->nullable();
             $table->integer('promedio_calificacion')->nullable();
             $table->foreignId('id_usuario');
         });

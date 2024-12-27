@@ -34,7 +34,7 @@
         <!-- Descripción -->
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción sobre ti</label>
-            <textarea value="{{old('descripcion')}}" class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Cuéntanos sobre ti" required></textarea>
+            <textarea value="{{old('descripcion_sobre_mi')}}" class="form-control" id="descripcion" name="descripcion_sobre_mi" rows="3" placeholder="Cuéntanos sobre ti" required></textarea>
             @error('descripcion')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
