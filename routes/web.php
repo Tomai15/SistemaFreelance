@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PerfilDesarrolladorController;
 use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\UsuarioController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,9 +33,15 @@ Route::controller(PerfilDesarrolladorController::class)->group(function()
 }
 );
 
+Route::controller(UsuarioController::class)->group(function(){
+    Route::get('/misPublicaciones','mostrarMisPublicaciones');
+    Route::get('/misPublicaciones/{proyecto}/postulantes','mostrarPostulantes');
+}
+);
+
 Route::controller(ProyectoController::class)->group(function () {
     Route::get('/proyectos', 'index')->name('proyectos.index');
     Route::get('/proyectos/create', 'create')->name('proyectos.create');
     Route::post('/proyectos', 'store')->name('proyectos.store');
-    Route::get('/proyectos/{id}', 'show')->name('proyectos.show');
+    Route::get('/proyectos/{id}/postulantes', 'show')->name('proyectos.show');
 });

@@ -52,7 +52,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                           <li><a class="dropdown-item" href="/crearPerfil">Editar perfil</a></li>
                           <li><a class="dropdown-item" href="/misPostulaciones">Gestionar mis postulaciones</a></li>
-                          <li><a class="dropdown-item" href="/configuracion">Gestionar mis publicaciones</a></li>
+                          <li><a class="dropdown-item" href="/misPublicaciones">Gestionar mis publicaciones</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
                         </ul>
