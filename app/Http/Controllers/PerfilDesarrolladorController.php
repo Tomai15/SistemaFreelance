@@ -83,4 +83,76 @@ class PerfilDesarrolladorController extends Controller
         return response()->redirectTo("/proyectos");
 
     }
+    public function editarPerfil(PerfilDesarrollador $perfilDesarrollador, Request $request)
+{
+    $datosUsuario = $request->validate(
+        [
+            "nombre" => ['string', 'required'],
+            "apellido" => ['string', 'required'],
+            "descripcion_sobre_mi" => ['string', 'required'],
+            "foto" => [File::image()],
+            'tecnologias' => 'required|array',
+            'tecnologias.*' => 'string',
+            'nivel' => 'required|array',
+            'nivel.*' => 'integer|min:1|max:10'
+        ]
+    );
+
+    // Actualizamos datos básicos del perfil
+    $perfilDesarrollador->nombre = $datosUsuario['nombre'];
+    $perfilDesarrollador->apellido = $datosUsuario['apellido'];
+    $perfilDesarrollador->descripcion_sobre_mi = $datosUsuario['descripcion_sobre_mi'];
+
+    // Guardamos las tecnologías y niveles
+    $stringsTecnologias = $datosUsuario['tecnologias'];
+    $nivelesTecnologias = $datosUsuario['nivel'];
+
+    // Obtener las tecnologías conocidas por el usuario
+    $tecnologiasConocidas = $perfilDesarrollador->tecnologiasConocidas->keyBy(function ($tecnologiaConocida) {
+        return $tecnologiaConocida->tecnologia->nombre;
+    });
+
+    $nuevasTecnologiasGuardar = [];
+
+    foreach ($stringsTecnologias as $stringTecnologia) {
+        $nivelEnTecnologia = $nivelesTecnologias[$stringTecnologia];
+
+        if ($tecnologiasConocidas->has($stringTecnologia)) {
+            // Si la tecnología ya es conocida, actualizamos su nivel
+            $tecnologiaConocida = $tecnologiasConocidas[$stringTecnologia];
+            $tecnologiaConocida->nivel_tecnologia = $nivelEnTecnologia;
+            $tecnologiaConocida->save();
+        } else {
+            // Si la tecnología no es conocida, la agregamos
+            $tecnologiaEncontrada = Tecnologia::firstWhere('nombre', $stringTecnologia);
+
+            if ($tecnologiaEncontrada) {
+                $nuevaTecnologiaConocida = new TecnologiaConocida(['nivel_tecnologia' => $nivelEnTecnologia]);
+                $nuevaTecnologiaConocida->tecnologia()->associate($tecnologiaEncontrada);
+                array_push($nuevasTecnologiasGuardar, $nuevaTecnologiaConocida);
+            }
+        }
+    }
+
+    // Guardar las nuevas tecnologías conocidas
+    $perfilDesarrollador->tecnologiasConocidas()->saveMany($nuevasTecnologiasGuardar);
+
+    $usuarioEnSesion = session('usuario');
+    // Guardar la nueva foto de perfil
+    if(isset($datosUsuario['foto']))
+    {
+       $rutaFoto = "storage/" . $datosUsuario['foto']->store('/fotosPerfil', 'public');
+       $usuarioEnSesion->ruta_foto_usuario = $rutaFoto; 
+    }
+    
+    
+
+    // Guardar el perfil actualizado
+    $perfilDesarrollador->save();
+    $usuarioEnSesion->save();
+    session(('usuario'))->refresh();
+    return response()->redirectTo("/proyectos");
+}
+
+
 }

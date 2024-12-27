@@ -37,7 +37,7 @@
             <!-- Campo para subir foto -->
             <div class="mb-3">
                 <label for="foto" class="form-label">Subir foto de perfil</label>
-                <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+                <input type="file" class="form-control" id="foto" name="foto" accept="image/*" >
                 @error('foto')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
