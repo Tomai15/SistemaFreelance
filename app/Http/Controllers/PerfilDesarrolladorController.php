@@ -154,5 +154,10 @@ class PerfilDesarrolladorController extends Controller
     return response()->redirectTo("/proyectos");
 }
 
+public function mostrarMisPostulacion(Request $request)
+{
+    return view('perfil.mis-postulaciones');
+}
+
 
 }

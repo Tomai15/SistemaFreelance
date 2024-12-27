@@ -28,6 +28,7 @@ Route::controller(PerfilDesarrolladorController::class)->group(function()
     Route::get('/crearPerfil','crearPerfil');
     Route::post('/crearPerfil','guardarPerfil');
     Route::put('/editarPerfil/{perfilDesarrollador}','editarPerfil');
+    Route::get('/misPostulaciones','mostrarMisPostulacion');
 }
 );
 
