@@ -19,8 +19,7 @@ return new class extends Migration
         $table->integer('horas_estimadas')->nullable();
         $table->integer('precio')->nullable();
         $table->integer('calificacion_trabajo')->nullable();
-        $table->foreignId('usuario_id')->constrained('usuario')->onDelete('cascade');
-        $table->foreingId('perfil_desarrollador_id')->nullable()->constrained('perfil_desarrollador')->onDelete('cascade');
+        $table->foreignId('usuario_id')->nullable()->constrained('usuario')->onDelete('cascade');
         $table->foreignId('urgencia_id')->nullable()->constrained('urgencia')->onDelete('cascade');
         $table->foreignId('confidencialidad_id')->nullable()->constrained('confidencialidad')->onDelete('cascade');
     });
