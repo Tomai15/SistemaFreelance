@@ -131,9 +131,10 @@ class ProyectoController extends Controller
      */
     public function show(string $id)
     {
-        $proyecto = Proyecto::with(['tecnologias', 'urgenciaEstablecida', 'confidencialidadEstablecida'])->findOrFail($id);
+       /*  $proyecto = Proyecto::with(['tecnologias', 'urgenciaEstablecida', 'confidencialidadEstablecida'])->findOrFail($id);
 
-        return view('proyectos.show', ['proyecto' => $proyecto]);
+        return view('proyectos.show', ['proyecto' => $proyecto]); */
+        return view('proyectos.show');
     }
 
     /**

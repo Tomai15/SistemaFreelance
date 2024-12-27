@@ -39,10 +39,9 @@
                 <p> Somos un equipo de desarrolladores comprometidos para ofrecer los mejores servicios, con soluciones innovadoras y personalizadas, a nuestros clientes</p>
                 <div class="row mt-5">
                     <h6 class="text-uppercase mb-3">Nuestro Equipo</h6>
-                    <div class="col-3">Tomas Delgado</div>
-                    <div class="col-3">Carolina Rinaldi</div>
-                    <div class="col-3">Matias Escordamaglia</div>
-                    <div class="col-3">Mateo Fernandez</div>
+                    <div class="col-4">Tomas Delgado</div>
+                    <div class="col-4">Carolina Rinaldi</div>
+                    <div class="col-4">Matias Escordamaglia</div>
                 </div>
             </div>
 

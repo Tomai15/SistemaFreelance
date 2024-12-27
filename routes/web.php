@@ -43,5 +43,6 @@ Route::controller(ProyectoController::class)->group(function () {
     Route::get('/proyectos', 'index')->name('proyectos.index');
     Route::get('/proyectos/create', 'create')->name('proyectos.create');
     Route::post('/proyectos', 'store')->name('proyectos.store');
-    Route::get('/proyectos/{id}/postulantes', 'show')->name('proyectos.show');
+    Route::get('/proyectos/{id}', 'show');
+    //Route::get('/proyectos/{id}/postulantes', 'show')->name('proyectos.show');
 });
