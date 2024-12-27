@@ -60,7 +60,7 @@ class Proyecto extends Model
 
     public function desarrolladorSeleccionado(): HasOne
     {
-        return $this->hasOne(PerfilDesarrollador::class);
+        return $this->hasOne(PerfilDesarrollador::class, 'id', 'perfil_desarrollador_id');
     }
 
  
