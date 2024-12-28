@@ -46,4 +46,7 @@ Route::controller(ProyectoController::class)->group(function () {
     Route::get('/proyectos/{id}', 'show');
     //Route::get('/proyectos/{id}/postulantes', 'show')->name('proyectos.show');
     Route::get('/proyecto/descargar/{id}','descargarArchivo')->name('proyecto.descargar');
+    Route::get('/proyectos/{id}/edit', 'edit')->name('proyectos.edit');
+    Route::put('/proyectos/{id}', 'update')->name('proyectos.update');
+    
 });

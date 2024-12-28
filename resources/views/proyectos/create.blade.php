@@ -49,11 +49,14 @@
                     <div class="mb-3 mx-5">
                         <label for="url_documento_requerimientos" class="form-label">Documento de Requerimientos</label>
                         <input class="form-control" type="file" id="url_documento_requerimientos" name="url_documento_requerimientos" accept=".pdf">
+                        @error('url_documento_requerimientos')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="row g-1 mx-5 mb-3">
                         <div class="col-md-4">
                             <label for="horas_estimadas" class="form-label">Horas Estimadas</label>
-                            <input type="number" class="form-control" id="horasEstimadas" name="horas_estimadas" placeholder="hs">
+                            <input value="{{ old('horas_estimadas') }}" type="number" class="form-control" id="horasEstimadas" name="horas_estimadas" placeholder="hs">
                             @error('horas_estimadas')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -61,9 +64,11 @@
                         <div class="col-md-4">
                             <label for="urgencia" class="form-label">Nivel de Urgencia</label>
                              <select id="urgencia" class="form-select" name="urgencia_id">
-                                <option value="" disabled selected>Seleccione una opción</option>
+                                <option value="" disabled {{ old('urgencia_id') ? '' : 'selected' }}>Seleccione una opción</option>
                                 @foreach($urgencias as $urgencia)
-                                    <option value="{{ $urgencia->id }}">{{ $urgencia->nivel_urgencia }}</option>
+                                    <option value="{{ $urgencia->id }}" {{ old('urgencia_id') == $urgencia->id ? 'selected' : '' }}> 
+                                        {{ $urgencia->nivel_urgencia }}
+                                    </option>
                                 @endforeach
                              
                             </select>
@@ -74,9 +79,11 @@
                         <div class="col-md-4">
                             <label for="confidencialidad" class="form-label">Nivel de Confidencialidad</label>
                              <select id="confidencialidad" class="form-select" name="confidencialidad_id">
-                                <option value="" disabled selected>Seleccione una opción</option>
+                                <option value="" disabled {{ old('confidencialidad_id') ? '' : 'selected' }}>Seleccione una opción</option>
                                 @foreach($confidencialidades as $confidencialidad)
-                                    <option value="{{ $confidencialidad->id }}">{{ $confidencialidad->nivel_confidencialidad }}</option>
+                                    <option value="{{ $confidencialidad->id }}" {{ old('confidencialidad_id') == $confidencialidad->id ? 'selected' : '' }}> 
+                                        {{ $confidencialidad->nivel_confidencialidad }}
+                                    </option>
                                 @endforeach
                              
                             </select>
@@ -90,18 +97,21 @@
                         <div class="col-md-8 me-5">
                             <label for="tecnologias" class="form-label">Tecnologías de Preferencia</label>
                             <br>
-                            <select id="tecnologias" class="form-select" name="tecnologias[]" multiple required>
+                            <select id="tecnologias" class="form-select" name="tecnologias[]" multiple>
                                 @foreach($tecnologias as $tecnologia)
-                                    <option value="{{ $tecnologia->id }}">{{ $tecnologia->nombre }}</option>
+                                    <option value="{{ $tecnologia->id }}"
+                                        {{ is_array(old('tecnologias')) && in_array($tecnologia->id, old('tecnologias')) ? 'selected' : '' }}>
+                                        {{ $tecnologia->nombre }}
+                                    </option>
                                 @endforeach
                             </select>
-                            @error('tecnologias[]')
+                            @error('tecnologias')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-2 ">
                             <label for="precio" class="form-label">Precio</label>
-                            <input type="text" class="form-control" id="precio" name="precio" placeholder="$">
+                            <input value="{{ old('precio') }}" type="text" class="form-control" id="precio" name="precio" placeholder="$">
                             @error('precio')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -116,9 +126,6 @@
             </div>
         </div>
     </main>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         window.onload = function () {

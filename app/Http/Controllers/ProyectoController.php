@@ -112,7 +112,13 @@ class ProyectoController extends Controller
         ], [
             "nombre_proyecto.required" => "Este campo es obligatorio!",
             "descripcion.required" => "Este campo es obligatorio!",
-            "urgencia_id.required" => "Debe seleccionar una opcion del campo!"
+            "url_documento_requerimientos.max" => "El archivo no debe exceder los 2 MB.",
+            "urgencia_id.required" => "Debe seleccionar una opcion del campo!",
+            "confidencialidad_id.required" => "Debe seleccionar una opcion del campo!",
+            "horas_estimadas.required" => "Este campo es obligatorio!",
+            "precio.required" => "Este campo es obligatorio!",
+            "precio.numeric" => "Este campo debe ser numérico!",
+            "tecnologias.required" => "Debe seleccionar una o varias opciones del campo!"
         ]);
 
         try {
@@ -163,7 +169,21 @@ class ProyectoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $proyecto = Proyecto::with(['urgenciaEstablecida', 'confidencialidadEstablecida', 'tecnologias'])->findOrFail($id);
+
+        $urgencias = Urgencia::all();
+        $confidencialidades = Confidencialidad::all();
+        $tecnologias = Tecnologia::all(); 
+
+        $parametros = [
+            'proyecto' => $proyecto,
+            'urgencias' => $urgencias,
+            'confidencialidades' => $confidencialidades,
+            'tecnologias' => $tecnologias
+        ];
+
+        return view("proyectos.edit", $parametros);
     }
 
     /**
