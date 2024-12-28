@@ -61,6 +61,16 @@
                         <td>50%</td>
                         <td><button class="btn btn-primary btn-sm">Ver Detalles</button></td>
                     </tr>
+                        @if($postulaciones->count())
+                        <!-- Filas repetidas para cada $postulacion -->
+                            @foreach($postulaciones as $postulacion)
+                            
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="3">No hay proyectos disponibles por el momento</td>
+                            </tr>
+                        @endif
                     <!-- Fin del ejemplo -->
                 </tbody>
             </table>

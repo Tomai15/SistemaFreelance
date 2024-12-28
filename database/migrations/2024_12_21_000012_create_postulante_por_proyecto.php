@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('postulante_por_proyecto', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('proyecto_id')->constrained('proyecto')->onDelete('cascade'); 
+            $table->foreignId('proyecto_id')->constrained('proyecto')->onDelete('cascade');
             $table->foreignId('perfil_desarrollador_id')->constrained('perfil_desarrollador')->onDelete('cascade');
+            $table->foreignId('estado_postulacion_id')->constrained('estado_postulacion');
+            $table->timestamps(); 
         });
     }
 

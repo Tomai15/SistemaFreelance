@@ -28,10 +28,17 @@ class PerfilDesarrollador extends Model
     {
         return $this->hasMany(Proyecto::class);
     }
+    
     public function tecnologiasConocidas(): HasMany
     {
         return $this->hasMany(TecnologiaConocida::class);
     }
+
+    public function postulaciones(): HasMany
+    {
+        return $this->hasMany(Postulacion::class, 'perfil_desarrollador_id');
+    }
+
 
 
     //Version usando TecnologiaConocida como tabla intermedia
