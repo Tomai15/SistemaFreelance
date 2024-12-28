@@ -8,6 +8,7 @@ use App\Models\Tecnologia;
 use Illuminate\Http\Request;
 use App\Models\Confidencialidad;
 use App\Http\Controllers\Controller;
+use App\Models\EstadoPorProyecto;
 
 class ProyectoController extends Controller
 {
@@ -115,17 +116,20 @@ class ProyectoController extends Controller
         ]);
 
         try {
-            // Guardar el archivo en el sistema de almacenamiento (storage/app/archivos)
-            //$path = $request->file('url_documento_requerimientos')->store('archivos');
+            // Guardar el archivo en el sistema de almacenamiento (storage/app/requerimientos)
             $fileName = str_replace(' ','',$datos['nombre_proyecto']);
             $path = "storage/" . $request->file('url_documento_requerimientos')->storeAs('/requerimientos',$fileName. '.' . $request->url_documento_requerimientos->extension() , 'public');
             $datos['url_documento_requerimientos']=$path;
             $usuarioEnSesion = session("usuario");
             $nuevoProyecto = $usuarioEnSesion->proyectos()->create($datos);
+           
+            $nuevoProyecto->estadosPorProyecto()->create([
+                'tipo_estado_id' => 1, // Estado inicial con ID 1
+                'created_at' => now()->subDays(3)
+            ]);
 
             //$proyecto = Proyecto::create($datos);
             $nuevoProyecto->tecnologias()->attach($request->tecnologias);
-           // $nuevoProyecto->url_documento_requerimientos = $path;
 
             session()->flash('success', 'El proyecto se ha creado exitosamente.');
 

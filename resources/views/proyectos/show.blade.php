@@ -43,9 +43,9 @@
                 <li>Ha concretado 18 proyectos</li>
                 <li>(iconVisto)Payment method verified</li>
               </ul>
-              Este espacio es ideal para contenido adicional como enlaces, listas o información secundaria.
+        
             </div>
-            <a href="#" class="btn btn-secondary">More Info</a>
+            <a href="#" class="m-5 btn btn-secondary ">More Info</a>
           </div>
         </div>
       </div>
