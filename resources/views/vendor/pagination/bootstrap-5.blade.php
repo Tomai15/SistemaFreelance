@@ -29,7 +29,7 @@
         <div class="d-none flex-sm-fill d-sm-flex align-items-center justify-content-between">
             <div>
                 <p class="white mb-0">
-                    {!! __('Total proyectos disponibles:') !!}
+                    {!! __('Total elementos:') !!}
                     <span class="fw-semibold">{{ $paginator->total() }}</span>
                 </p>
             </div>
