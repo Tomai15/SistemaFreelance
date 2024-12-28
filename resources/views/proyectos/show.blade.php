@@ -8,22 +8,20 @@
         <div class="col-md-8">
           <div class="card h-100">
             <div class="card-body">
-              <h5 class="card-title">Titulo del Proyecto</h5>
-              <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti at debitis cum alias incidunt obcaecati numquam, doloremque amet nihil officiis, quasi voluptatem aliquid accusamus. Ab, numquam. Voluptates explicabo rerum veniam! With supporting text below as a natural lead-in to additional content.</p>
+              <h5 class="card-title">{{ $proyecto->nombre_proyecto }}</h5>
+              <p class="card-text">{{ $proyecto->descripcion }}</p>
               <div class="py-2">
                 <h6>Tecnologías requeridas:</h6>
                   <div class="tags">
-                    <span class="badge bg-warning text-dark">HTML</span>
-                    <span class="badge bg-info text-dark">CSS</span>
-                    <span class="badge bg-info text-dark">JavaScript</span>
-                    <span class="badge bg-info text-dark">Bootstrap 5</span>
-                    <span class="badge bg-info text-dark">Python</span>
+                    @foreach ($proyecto->tecnologias as $tecnologia)
+                        <span class="badge bg-warning text-dark">{{ $tecnologia->nombre }}</span>
+                    @endforeach
                   </div>
               </div>     
                   <hr>
                   <h6>Documento Disponible:</h6>
                   <div class="my-3">
-                    <a href="#" class="text-decoration-none text-primary">Requerimientos Funcionales (PDF)</a>
+                    <a href="#" target="_blank" class="text-decoration-none text-primary">Requerimientos Funcionales (PDF)</a>
                   </div>
                   <div class="py-3 text-center" >
                     <a href="#" class="btn btn-success  fw-bold ">Postulate</a>
