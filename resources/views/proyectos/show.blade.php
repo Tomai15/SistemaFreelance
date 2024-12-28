@@ -19,10 +19,12 @@
                   </div>
               </div>     
                   <hr>
+                  @if ($proyecto->url_documento_requerimientos)
                   <h6>Documento Disponible:</h6>
                   <div class="my-3">
-                    <a href="#" target="_blank" class="text-decoration-none text-primary">Requerimientos Funcionales (PDF)</a>
+                    <a href="{{ route('proyecto.descargar', $proyecto->id) }}" target="_blank" class="text-primary">Requerimientos Funcionales (PDF)</a>
                   </div>
+                  @endif
                   <div class="py-3 text-center" >
                     <a href="#" class="btn btn-success  fw-bold ">Postulate</a>
                   </div>   

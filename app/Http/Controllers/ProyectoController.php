@@ -117,7 +117,8 @@ class ProyectoController extends Controller
         try {
             // Guardar el archivo en el sistema de almacenamiento (storage/app/archivos)
             //$path = $request->file('url_documento_requerimientos')->store('archivos');
-            $path = "storage/" . $request->file('url_documento_requerimientos')->store('/requerimientos', 'public');
+            $fileName = str_replace(' ','',$datos['nombre_proyecto']);
+            $path = "storage/" . $request->file('url_documento_requerimientos')->storeAs('/requerimientos',$fileName. '.' . $request->url_documento_requerimientos->extension() , 'public');
             $datos['url_documento_requerimientos']=$path;
             $usuarioEnSesion = session("usuario");
             $nuevoProyecto = $usuarioEnSesion->proyectos()->create($datos);
@@ -173,4 +174,18 @@ class ProyectoController extends Controller
     {
         //
     }
+
+    public function descargarArchivo($id)
+    {
+        $proyecto = Proyecto::findOrFail($id);
+
+        // Verificar que el archivo exista
+        if (!file_exists($proyecto->url_documento_requerimientos)) {
+            abort(404, 'El archivo no existe.');
+        }
+
+        // Descargar el archivo
+        return response()->download($proyecto->url_documento_requerimientos, basename($proyecto->url_documento_requerimientos));
+    }
 }
+
