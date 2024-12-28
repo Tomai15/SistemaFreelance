@@ -167,8 +167,7 @@ class PerfilDesarrolladorController extends Controller
             return redirect('/crearPerfil')->with('error', 'Debe crear un perfil antes de ver sus postulaciones.');
         }
 
-        
-        $postulaciones = $perfilDesarrollador->postulaciones; 
+        $postulaciones = $perfilDesarrollador->postulaciones()->with(['proyecto', 'estado'])->get();
         
         $trabajosRealizados = $perfilDesarrollador->trabajosRealizados()
             ->whereHas('estadoActual.estado', function ($query) {
