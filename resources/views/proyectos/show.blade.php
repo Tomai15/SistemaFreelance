@@ -52,7 +52,7 @@
     </div>
     
     <div class=" mt-5 py-3">
-      <p class="mb-4 fw-bold">3 freelancer estan postulados en este trabajo</p>
+      <p class="mb-4 fw-bold">3 freelancers estan postulados en este trabajo</p>
       <div class="row g-3">
         <!-- Card del Postulante -->
         <div class="col-8">

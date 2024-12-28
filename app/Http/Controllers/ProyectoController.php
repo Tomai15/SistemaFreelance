@@ -95,6 +95,7 @@ class ProyectoController extends Controller
         $datos = $request->validate([
             "nombre_proyecto" => ["required"],
             "descripcion" => ["required"],
+            'url_documento_requerimientos' => ['required','file','mimes:pdf','max:2048'], // Máx 2MB
             "urgencia_id" => ["required"],
             'confidencialidad_id' => ["required"],
             'horas_estimadas' => ["required"],
@@ -107,12 +108,16 @@ class ProyectoController extends Controller
         ]);
 
         try {
+            // Guardar el archivo en el sistema de almacenamiento (storage/app/archivos)
+            //$path = $request->file('url_documento_requerimientos')->store('archivos');
+            $path = "storage/" . $request->file('url_documento_requerimientos')->store('/requerimientos', 'public');
+            $datos['url_documento_requerimientos']=$path;
             $usuarioEnSesion = session("usuario");
             $nuevoProyecto = $usuarioEnSesion->proyectos()->create($datos);
 
             //$proyecto = Proyecto::create($datos);
             $nuevoProyecto->tecnologias()->attach($request->tecnologias);
-            
+           // $nuevoProyecto->url_documento_requerimientos = $path;
 
             session()->flash('success', 'El proyecto se ha creado exitosamente.');
 

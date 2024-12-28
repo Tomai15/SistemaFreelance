@@ -28,7 +28,7 @@
     <main class="">
         <div class="d-flex align-items-center text-gray">
             <div class="container m-5">
-                <form action="/proyectos" method="post">
+                <form action="/proyectos" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3 mx-5">
                         <label for="nombre_proyecto" class="form-label">Nombre del Proyecto</label>
@@ -47,8 +47,8 @@
                         @enderror
                     </div>
                     <div class="mb-3 mx-5">
-                        <label for="formFile" class="form-label">Documento de Requerimientos</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label for="url_documento_requerimientos" class="form-label">Documento de Requerimientos</label>
+                        <input class="form-control" type="file" id="url_documento_requerimientos" name="url_documento_requerimientos" accept=".pdf" required>
                     </div>
                     <div class="row g-1 mx-5 mb-3">
                         <div class="col-md-4">
