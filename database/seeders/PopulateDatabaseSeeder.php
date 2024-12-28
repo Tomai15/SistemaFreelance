@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Usuario;
 use App\Models\Proyecto;
 use App\Models\PerfilDesarrollador;
+use App\Models\Postulacion;
 use App\Models\Urgencia;
 use App\Models\Tecnologia;
 use App\Models\Confidencialidad;
@@ -288,5 +289,21 @@ class PopulateDatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        Postulacion::create([
+            'proyecto_id' => 2,
+            'perfil_desarrollador_id' => 2,
+            'estado_postulacion_id' => 2,
+        ]);
+        Postulacion::create([
+            'proyecto_id' => 4,
+            'perfil_desarrollador_id' => 2,
+            'estado_postulacion_id' => 3,
+        ]);
+        Postulacion::create([
+            'proyecto_id' => 5,
+            'perfil_desarrollador_id' => 2,
+            'estado_postulacion_id' => 1,
+        ]);
     }
 }

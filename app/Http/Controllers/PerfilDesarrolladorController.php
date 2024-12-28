@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PerfilDesarrollador;
 use App\Models\Tecnologia;
 use App\Models\TecnologiaConocida;
+use App\Models\Postulacion;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 
@@ -157,7 +158,12 @@ class PerfilDesarrolladorController extends Controller
     }
 
     public function mostrarMisPostulacion()
-    {
+    {   
+
+        if(!session()->has('usuario')) {
+            return redirect('/login')->with('error', 'Debe iniciar sesion previamente.');
+        }
+
         $usuario = session('usuario');
 
         $perfilDesarrollador = $usuario->perfilDesarrollador;
@@ -167,19 +173,31 @@ class PerfilDesarrolladorController extends Controller
             return redirect('/crearPerfil')->with('error', 'Debe crear un perfil antes de ver sus postulaciones.');
         }
 
-        $postulaciones = $perfilDesarrollador->postulaciones()->with(['proyecto', 'estado'])->get();
-        
+        $postulaciones = $perfilDesarrollador->postulaciones()->with(['proyecto', 'estado'])->paginate(10);
+
         $trabajosRealizados = $perfilDesarrollador->trabajosRealizados()
             ->whereHas('estadoActual.estado', function ($query) {
                 $query->where('nombre_tipo_estado', 'Cerrado');
-            })->get();
+            })->paginate(10);
 
         $trabajosEnProceso = $perfilDesarrollador->trabajosEnProceso()
             ->whereHas('estadoActual.estado', function ($query) {
                 $query->where('nombre_tipo_estado', 'En Curso');
-            })->get();
+            })->paginate(10);
 
         return view('perfil.mis-postulaciones', compact('postulaciones', 'trabajosRealizados', 'trabajosEnProceso'));
+    }
+
+    public function eliminarPostulacion($id)
+    {
+        if ($postulacion->estado_postulacion_id !== 1) {
+            return redirect()->back()->with('error', 'Acción denegada.');
+        }
+
+        $postulacion = Postulacion::findOrFail($id);
+        $postulacion->delete();
+
+        return redirect()->back()->with('success', 'La postulación fue cancelada exitosamente.');
     }
 
 

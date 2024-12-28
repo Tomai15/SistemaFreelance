@@ -30,6 +30,7 @@ Route::controller(PerfilDesarrolladorController::class)->group(function()
     Route::post('/crearPerfil','guardarPerfil');
     Route::put('/editarPerfil/{perfilDesarrollador}','editarPerfil');
     Route::get('/misPostulaciones','mostrarMisPostulacion');
+    Route::delete('/misPostulaciones/{postulacion}', 'eliminarPostulacion')->name('postulacion.destroy');
 }
 );
 
