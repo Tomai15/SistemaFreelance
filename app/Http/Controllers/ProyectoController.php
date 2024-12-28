@@ -18,6 +18,13 @@ class ProyectoController extends Controller
     {
         $query = Proyecto::query();
 
+        //Filtra todos aquellos cuyo ultimo estado es 'Abierto'
+        $query->whereHas('estadoActual', function ($q) {
+            $q->whereHas('estado', function ($q) {
+                $q->where('nombre_tipo_estado', 'Abierto');
+            });
+        });
+
         // Filter by Tecnologías
         if ($request->filled('tecnologias')) {
             $tecnologias = (array) $request->input('tecnologias');
