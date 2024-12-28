@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_estado_proyecto', function (Blueprint $table) {
+        Schema::create('tipo_estado', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_tipo_estado');
         });
+
+        DB::table('tipo_estado')->insert([
+            ['id' => 1, 'nombre_tipo_estado' => 'Abierto'],
+            ['id' => 2, 'nombre_tipo_estado' => 'En Curso'],
+            ['id' => 3, 'nombre_tipo_estado' => 'Cerrado'],
+        ]);
     }
 
     /**
