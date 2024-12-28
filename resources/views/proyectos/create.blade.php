@@ -19,11 +19,11 @@
 </div>
 @endif
 
-    @if(session('error'))
+{{--     @if(session('error'))
     <div class="alert alert-danger mx-5">
         {{ session('error') }}
     </div>
-    @endif
+    @endif --}}
 
     <main class="">
         <div class="d-flex align-items-center text-gray">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="mb-3 mx-5">
                         <label for="url_documento_requerimientos" class="form-label">Documento de Requerimientos</label>
-                        <input class="form-control" type="file" id="url_documento_requerimientos" name="url_documento_requerimientos" accept=".pdf" required>
+                        <input class="form-control" type="file" id="url_documento_requerimientos" name="url_documento_requerimientos" accept=".pdf">
                     </div>
                     <div class="row g-1 mx-5 mb-3">
                         <div class="col-md-4">

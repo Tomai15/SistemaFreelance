@@ -103,7 +103,7 @@ class ProyectoController extends Controller
         $datos = $request->validate([
             "nombre_proyecto" => ["required"],
             "descripcion" => ["required"],
-            'url_documento_requerimientos' => ['required','file','mimes:pdf','max:2048'], // Máx 2MB
+            'url_documento_requerimientos' => ['file','mimes:pdf','max:2048'], // Máx 2MB
             "urgencia_id" => ["required"],
             'confidencialidad_id' => ["required"],
             'horas_estimadas' => ["required"],
@@ -116,16 +116,19 @@ class ProyectoController extends Controller
         ]);
 
         try {
-            // Guardar el archivo en el sistema de almacenamiento (storage/app/requerimientos)
-            $fileName = str_replace(' ','',$datos['nombre_proyecto']);
-            $path = "storage/" . $request->file('url_documento_requerimientos')->storeAs('/requerimientos',$fileName. '.' . $request->url_documento_requerimientos->extension() , 'public');
-            $datos['url_documento_requerimientos']=$path;
+            if ($request->hasFile('url_documento_requerimientos')) {
+                // Guardar el archivo en el sistema de almacenamiento (storage/app/requerimientos)
+                $fileName = str_replace(' ','',$datos['nombre_proyecto']);
+                $path = "storage/" . $request->file('url_documento_requerimientos')->storeAs('/requerimientos',$fileName. '.' . $request->url_documento_requerimientos->extension() , 'public');
+                $datos['url_documento_requerimientos']=$path;
+            }
+            
             $usuarioEnSesion = session("usuario");
             $nuevoProyecto = $usuarioEnSesion->proyectos()->create($datos);
            
             $nuevoProyecto->estadosPorProyecto()->create([
                 'tipo_estado_id' => 1, // Estado inicial con ID 1
-                'created_at' => now()->subDays(3)
+                'created_at' => now()->subDays(3)->subHours(3)
             ]);
 
             //$proyecto = Proyecto::create($datos);
