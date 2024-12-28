@@ -45,7 +45,7 @@ class Proyecto extends Model
 
     public function estadoActual(): HasOne
     {
-        return $this->hasOne(EstadoPorProyecto::class, 'proyecto_id')->latestOfMany('establecido_el');
+        return $this->hasOne(EstadoPorProyecto::class, 'proyecto_id')->latestOfMany('created_at');
     }
 
     public function tagsBusqueda(): BelongsToMany
