@@ -53,17 +53,13 @@ class Proyecto extends Model
         return $this->belongsToMany(TagBusqueda::class,'tag_por_proyecto');
     }
 
-    public function postulantes(): BelongsToMany
+    public function postulaciones(): HasMany
     {
-        return $this->belongsToMany(PerfilDesarrollador::class,'postulante_por_proyecto');
+        return $this->hasMany(Postulacion::class, 'proyecto_id');
     }
 
     public function desarrolladorSeleccionado(): HasOne
     {
         return $this->hasOne(PerfilDesarrollador::class, 'id', 'perfil_desarrollador_id');
     }
-
- 
-
-    
 }
