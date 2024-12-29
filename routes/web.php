@@ -52,5 +52,6 @@ Route::controller(ProyectoController::class)->group(function () {
     Route::get('/proyecto/descargar/{id}','descargarArchivo')->name('proyecto.descargar');
     Route::get('/proyectos/{id}/edit', 'edit')->name('proyectos.edit');
     Route::put('/proyectos/{id}', 'update')->name('proyectos.update');
+    Route::post('/proyectos/{id}', 'postular')->name('proyectos.postular');
     
 });

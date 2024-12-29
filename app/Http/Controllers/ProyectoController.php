@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Confidencialidad;
 use App\Http\Controllers\Controller;
 use App\Models\EstadoPorProyecto;
+use App\Models\Postulacion;
 
 class ProyectoController extends Controller
 {
@@ -255,6 +256,45 @@ class ProyectoController extends Controller
 
         // Descargar el archivo
         return response()->download($proyecto->url_documento_requerimientos, basename($proyecto->url_documento_requerimientos));
+    }
+
+    public function postular($id){
+        $proyecto = Proyecto::findOrFail($id);
+        $usuarioEnSesion = session("usuario");
+
+        // Verificar si el usuario ya está postulado para este proyecto
+        $existePostulacion = $proyecto->postulaciones()->where('perfil_desarrollador_id', $usuarioEnSesion->perfilDesarrollador->id)->exists();
+
+        if ($existePostulacion) {
+            // Si el usuario ya está postulado, redirige con un mensaje de error
+            return redirect()->back()->with('error', 'Ya te has postulado a este proyecto.');
+
+        } 
+
+        $proyecto->postulaciones()->create([
+            'perfil_desarrollador_id' => $usuarioEnSesion->perfilDesarrollador->id,
+            'estado_postulacion_id' => 1, // Estado inicial con ID 1
+            'created_at' => now()->subDays(3)->subHours(3)
+        ]);
+
+        session()->flash('success', 'Te has postulado exitosamente al proyecto.');
+
+
+        $postulaciones = $usuarioEnSesion->perfilDesarrollador->postulaciones()->with(['proyecto', 'estado'])->paginate(10);
+        
+
+        $trabajosRealizados = $usuarioEnSesion->perfilDesarrollador->trabajosRealizados()
+            ->whereHas('estadoActual.estado', function ($query) {
+                $query->where('nombre_tipo_estado', 'Cerrado');
+            })->paginate(10);
+
+        $trabajosEnProceso = $usuarioEnSesion->perfilDesarrollador->trabajosEnProceso()
+            ->whereHas('estadoActual.estado', function ($query) {
+                $query->where('nombre_tipo_estado', 'En Curso');
+            })->paginate(10);
+        
+        return view('perfil.mis-postulaciones', compact('postulaciones', 'trabajosRealizados', 'trabajosEnProceso'));
+
     }
 }
 

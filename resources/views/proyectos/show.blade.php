@@ -1,5 +1,17 @@
 @include('layout.header')
 
+@if (session('error'))
+    <div class="alert alert-danger mt-3 text-center">
+        {{ session('error') }}
+    </div>
+@endif
+              
+@if (session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif 
+
 
 <main class="">
     <div class="container py-4">
@@ -26,7 +38,10 @@
                   </div>
                   @endif
                   <div class="py-3 text-center" >
-                    <a href="#" class="btn btn-success  fw-bold ">Postulate</a>
+                    <form method="POST" action="{{ route('proyectos.postular', $proyecto->id) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-success  fw-bold">Postulate</button>
+                    </form>
                   </div>   
             </div>
           </div>
