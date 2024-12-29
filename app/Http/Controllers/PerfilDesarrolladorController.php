@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EstadoPorProyecto;
 use App\Models\PerfilDesarrollador;
 use App\Models\Tecnologia;
 use App\Models\TecnologiaConocida;
 use App\Models\Postulacion;
 use App\Models\Proyecto;
+use App\Models\TipoEstado;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
@@ -204,8 +206,15 @@ class PerfilDesarrolladorController extends Controller
         );
 
         $rutaArchivo = '/store' . $datosUsuario['finalFile']->store('/resultadosProyectos','public');
+        
+        //estado entregado Id 4
+        $estadoEntregado = TipoEstado::find(4);
 
         $proyecto->url_documento_requerimientos = $rutaArchivo;
+        $nuevoEstado = new EstadoPorProyecto();
+        $nuevoEstado->estado()->associate($estadoEntregado);
+        
+        $proyecto->estadoActual()->save($nuevoEstado);
         $proyecto->save();
         $proyecto->refresh();
         return view('perfil.accionarSobreProyecto',compact('proyecto'));
