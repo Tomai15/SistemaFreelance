@@ -85,18 +85,25 @@ class PopulateDatabaseSeeder extends Seeder
                 "apellido" => "Pérez",
                 "promedio_calificacion" => 4.5,
                 "id_usuario" => 1,
+                "CBU" => "01700992 20000067797370",
+                "telefono" => "+54 9 11 1234-5678",
             ],
             [
                 "nombre" => "Ana",
                 "apellido" => "García",
                 "promedio_calificacion" => 4.8,
                 "id_usuario" => 2,
+                "CBU" => "28590992 20000067797370",
+                "telefono" => "+54 9 223 123-4567",
+                
             ],
             [
                 "nombre" => "Carlos",
                 "apellido" => "López",
                 "promedio_calificacion" => 4.2,
                 "id_usuario" => 3,
+                "CBU" => "08790992 20000067435370",
+                "telefono" => "+54 9 3541 12-3456",
             ],
         ];
 

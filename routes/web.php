@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PerfilDesarrolladorController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\UsuarioController;
+use App\Exports\PostulantesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,6 +54,16 @@ Route::controller(ProyectoController::class)->group(function () {
     Route::get('/proyecto/descargar/{id}','descargarArchivo')->name('proyecto.descargar');
     Route::get('/proyectos/{id}/edit', 'edit')->name('proyectos.edit');
     Route::put('/proyectos/{id}', 'update')->name('proyectos.update');
-    Route::post('/proyectos/{id}', 'postular')->name('proyectos.postular');
-    
+    Route::post('/proyectos/{id}', 'postular')->name('proyectos.postular');   
 });
+
+Route::get('/proyectos/{proyectoId}/export-postulantes', function ($proyectoId) {
+
+    $export = new PostulantesExport($proyectoId);
+
+    $fileName = 'Postulantes_de_' . str_replace(' ', '_', $export->getProyectoNombre()) . '.xlsx';
+
+    return Excel::download($export, $fileName);
+
+})->name('export.postulantes');
+

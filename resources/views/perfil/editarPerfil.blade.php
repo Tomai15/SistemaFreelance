@@ -22,6 +22,24 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <!-- Número de Teléfono -->
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Número de Teléfono</label>
+            <input value="{{old('telefono')}}" type="tel" class="form-control" id="telefono" name="telefono" placeholder="Escribe tu número de teléfono" required>
+            @error('telefono')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- CVU -->
+        <div class="mb-3">
+            <label for="cvu" class="form-label">CVU</label>
+            <input value="{{old('cvu')}}" type="text" class="form-control" id="cvu" name="CBU" placeholder="Escribe tu CVU" required>
+            @error('CBU')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
     
             <!-- Descripción -->
             <div class="mb-3">
