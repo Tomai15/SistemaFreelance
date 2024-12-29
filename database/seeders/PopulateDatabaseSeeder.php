@@ -315,6 +315,18 @@ class PopulateDatabaseSeeder extends Seeder
             }
         }
 
+        EstadoPorProyecto::create([
+            'proyecto_id' => 1,
+            'tipo_estado_id' => 3, 
+            'created_at' => now(),
+        ]);
+
+        EstadoPorProyecto::create([
+            'proyecto_id' => 3,
+            'tipo_estado_id' => 3, 
+            'created_at' => now(),
+        ]);
+
         Postulacion::create([
             'proyecto_id' => 2,
             'perfil_desarrollador_id' => 2,

@@ -1,14 +1,15 @@
 @include('layout.header')
 
 <div class="proyectos container-fluid">
+
     <h2 class="mb-4 login">Mis proyectos publicados</h2>
 
     <!-- Filtrado y búsqueda -->
-    <div class="filter-search-container">
+    <div class="d-flex justify-content-sm-start">
         <button class="filter-button" id="filterModalToggle">Filtros</button>
         <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
         <button class="search-button" id="searchButton">Buscar</button>
-        <a href="/proyectos/create" class="search-button proyectos-button">Crear Nuevo Proyecto</a>
+        
     </div>
 
     <!-- Filter Modal -->
@@ -148,27 +149,29 @@
                                 @endswitch
                             </td>
                             <td>
-                                @switch($proyecto->estado)
-                                    @case('esperando')
-                                        <span class="status waiting">Esperando elección de postulante</span>
+                                @switch($proyecto->estadoActual->estado->nombre_tipo_estado)
+                                    @case('Abierto')
+                                        <span class="waiting">Esperando elección de postulante</span>
                                         @break
-                                    @case('postulante_elegido')
-                                        <span class="status chosen">Postulante elegido</span>
+                                    @case('En Curso')
+                                        <span class="chosen">Postulante elegido</span>
                                         @break
-                                    @case('finalizado')
-                                        <span class="status finished">Finalizado</span>
+                                    @case('Cerrado')
+                                        <span class="finished">Finalizado</span>
                                         @break
                                     @default
-                                        <span class="status unknown">Desconocido</span>
+                                        <span class="unknown">Desconocido</span>
                                 @endswitch
                             </td>
                             <td>
-                                <a href="/proyectos/{{ $proyecto->id }}/edit" class="btn btn-warning">Editar</a>
-                                <form action="/proyectos/{{ $proyecto->id }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
+                                @if($proyecto->estadoActual && $proyecto->estadoActual->estado->id === 1)
+                                    <a href="/proyectos/{{ $proyecto->id }}/edit" class="btn btn-warning">Editar</a>
+                                    <form action="/proyectos/{{ $proyecto->id }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                @endif
                                 <a href="/misPublicaciones/{{ $proyecto->id }}/postulantes" class="btn btn-info">Ver Postulantes</a>
                             </td>
                         </tr>

@@ -37,6 +37,7 @@ Route::controller(PerfilDesarrolladorController::class)->group(function()
 Route::controller(UsuarioController::class)->group(function(){
     Route::get('/misPublicaciones','mostrarMisPublicaciones');
     Route::get('/misPublicaciones/{proyecto}/postulantes','mostrarPostulantes');
+    Route::post('/elegir-desarrollador/{postulacion}', 'elegirDesarrollador')->name('usuario.elegirDesarrollador');
 }
 );
 
