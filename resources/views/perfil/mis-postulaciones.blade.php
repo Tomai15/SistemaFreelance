@@ -111,7 +111,7 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm">Ver Detalles</button>
+                                    <a href="misPostulaciones/{{$trabajo->id}}/accionarProyecto" class="btn btn-primary btn-sm">Ver Detalles</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -152,7 +152,7 @@
                                 </td>
                                 <td>{{ $trabajo->estadoActual->created_at->format('Y-m-d') }}</td>
                                 <td>
-                                    <button class="btn btn-secondary btn-sm">Descargar Informe</button>
+                                    <a class="btn btn-secondary btn-sm">Descargar Informe</a>
                                 </td>
                             </tr>
                         @endforeach

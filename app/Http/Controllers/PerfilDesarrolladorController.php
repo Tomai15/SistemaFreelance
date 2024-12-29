@@ -6,6 +6,8 @@ use App\Models\PerfilDesarrollador;
 use App\Models\Tecnologia;
 use App\Models\TecnologiaConocida;
 use App\Models\Postulacion;
+use App\Models\Proyecto;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 
@@ -186,6 +188,27 @@ class PerfilDesarrolladorController extends Controller
             })->paginate(10);
 
         return view('perfil.mis-postulaciones', compact('postulaciones', 'trabajosRealizados', 'trabajosEnProceso'));
+    }
+
+    public function accionarProyecto(Proyecto $proyecto)
+    {
+        return view('perfil.accionarSobreProyecto',compact('proyecto'));
+    }
+    public function subirResultadoProyecto(Proyecto $proyecto,Request $request)
+    {
+        $datosUsuario = $request->validate
+        (
+            [
+                "finalFile" => ['required']
+            ]
+        );
+
+        $rutaArchivo = '/store' . $datosUsuario['finalFile']->store('/resultadosProyectos','public');
+
+        $proyecto->url_documento_requerimientos = $rutaArchivo;
+        $proyecto->save();
+        $proyecto->refresh();
+        return view('perfil.accionarSobreProyecto',compact('proyecto'));
     }
 
     public function eliminarPostulacion($id)
