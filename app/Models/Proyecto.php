@@ -23,7 +23,8 @@ class Proyecto extends Model
         'precio',
         'urgencia_id',
         'confidencialidad_id',
-        'calificacion_trabajo'
+        'calificacion_trabajo',
+        'perfil_desarrollador_id'
     ];
     public function urgenciaEstablecida(): HasOne
     {

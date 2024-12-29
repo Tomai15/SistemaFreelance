@@ -190,11 +190,13 @@ class PerfilDesarrolladorController extends Controller
 
     public function eliminarPostulacion($id)
     {
+        $postulacion = Postulacion::findOrFail($id);
+        
         if ($postulacion->estado_postulacion_id !== 1) {
             return redirect()->back()->with('error', 'Acción denegada.');
         }
 
-        $postulacion = Postulacion::findOrFail($id);
+        
         $postulacion->delete();
 
         return redirect()->back()->with('success', 'La postulación fue cancelada exitosamente.');
