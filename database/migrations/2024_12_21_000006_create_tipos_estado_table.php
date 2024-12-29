@@ -20,6 +20,8 @@ return new class extends Migration
             ['id' => 1, 'nombre_tipo_estado' => 'Abierto'],
             ['id' => 2, 'nombre_tipo_estado' => 'En Curso'],
             ['id' => 3, 'nombre_tipo_estado' => 'Cerrado'],
+            ['id' => 4, 'nombre_tipo_estado' => 'Entregado'],
+            ['id' => 5, 'nombre_tipo_estado' => 'Cancelado'],
         ]);
     }
 

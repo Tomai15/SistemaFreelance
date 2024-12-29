@@ -78,6 +78,10 @@ class ProyectoController extends Controller
      */
     public function create()
     {
+        if(!session()->has('usuario')) {
+            return redirect('/login')->with('error', 'Debe iniciar sesion previamente.');
+        }
+
         $urgencias = Urgencia::all();
         $confidencialidades = Confidencialidad::all();
         $tecnologias = Tecnologia::all(); 
@@ -191,7 +195,45 @@ class ProyectoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $datos = $request->validate([
+        "nombre_proyecto" => ["required"],
+        "descripcion" => ["required"],
+        'url_documento_requerimientos' => ['nullable', 'file', 'mimes:pdf', 'max:2048'], // El archivo es opcional
+        "urgencia_id" => ["required"],
+        'confidencialidad_id' => ["required"],
+        'horas_estimadas' => ["required"],
+        'precio' => ["required", 'numeric'],
+        'tecnologias' => ['required', 'array'],
+    ]);
+
+    try {
+        // Buscar el proyecto a actualizar
+        $proyecto = Proyecto::findOrFail($id);
+
+        // Si hay un archivo nuevo, guardalo
+        if ($request->hasFile('url_documento_requerimientos')) {
+            $fileName = str_replace(' ', '', $datos['nombre_proyecto']);
+            $path = "storage/" . $request->file('url_documento_requerimientos')->storeAs(
+                '/requerimientos',
+                $fileName . '.' . $request->url_documento_requerimientos->extension(),
+                'public'
+            );
+            $datos['url_documento_requerimientos'] = $path;
+        }
+
+        // Actualizar los datos del proyecto
+        $proyecto->update($datos);
+
+        // Sincronizar tecnologías
+        $proyecto->tecnologias()->sync($request->tecnologias);
+
+        session()->flash('success', 'El proyecto se ha actualizado exitosamente.');
+        return view('misPublicaciones');
+        //return redirect()->route('proyectos.index');
+    } catch (\Exception $e) {
+        session()->flash('error', 'Hubo un error al actualizar el proyecto.');
+        return redirect()->back()->withInput();
+    }
     }
 
     /**

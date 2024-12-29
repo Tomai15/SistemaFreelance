@@ -151,13 +151,19 @@
                             <td>
                                 @switch($proyecto->estadoActual->estado->nombre_tipo_estado)
                                     @case('Abierto')
-                                        <span class="waiting">Esperando elección de postulante</span>
+                                        <span class="waiting">Eleccion de postulante pendiente</span>
                                         @break
                                     @case('En Curso')
                                         <span class="chosen">Postulante elegido</span>
                                         @break
+                                    @case('Entregado')
+                                        <span class="chosen">Revisión disponible</span>
+                                        @break
                                     @case('Cerrado')
                                         <span class="finished">Finalizado</span>
+                                        @break
+                                    @case('Cancelado')
+                                        <span class="finished">Cancelado</span>
                                         @break
                                     @default
                                         <span class="unknown">Desconocido</span>
@@ -169,7 +175,7 @@
                                     <form action="/proyectos/{{ $proyecto->id }}" method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">Cancelar</button>
                                     </form>
                                 @endif
                                 <a href="/misPublicaciones/{{ $proyecto->id }}/postulantes" class="btn btn-info">Ver Postulantes</a>

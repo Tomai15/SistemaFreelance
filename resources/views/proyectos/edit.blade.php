@@ -12,7 +12,7 @@
                 <p>El proyecto se ha actualizado exitosamente.</p>
             </div>
             <div class="modal-footer justify-content-center">
-                <a href="/proyectos" class="btn btn-primary">Continuar</a>
+                <a href="/misPublicaciones" class="btn btn-primary">Continuar</a>
             </div>
         </div>
     </div>
@@ -49,6 +49,9 @@
                     </div>
                     <div class="mb-3 mx-5">
                         <label for="url_documento_requerimientos" class="form-label">Documento de Requerimientos</label>
+                        @if($proyecto->url_documento_requerimientos)
+                            <p><a href="{{ asset($proyecto->url_documento_requerimientos) }}" target="_blank">Ver documento actual</a></p>
+                        @endif
                         <input class="form-control" type="file" id="url_documento_requerimientos" name="url_documento_requerimientos" accept=".pdf">
                         @error('url_documento_requerimientos')
                             <div class="alert alert-danger">{{ $message }}</div>
