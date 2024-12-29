@@ -242,7 +242,22 @@ class ProyectoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $proyecto = Proyecto::findOrFail($id);
+        $proyecto->estadosPorProyecto()->update([
+            'tipo_estado_id' => 5, // Estado Cancelado
+            'updated_at' => now()->subHours(3)
+        ]);
+        $postulaciones= $proyecto->postulaciones()->where('proyecto_id', $id)->get();
+
+        foreach ($postulaciones as $postulacion) {
+            $postulacion->update([
+                'estado_postulacion_id' => 3, // Estado Rechazado
+                'updated_at' => now()->subHours(3)]);
+        }
+
+        return redirect()->back()->with('success', 'La publicacion se ha cancelado correctamente.');
+
+        
     }
 
     public function descargarArchivo($id)
