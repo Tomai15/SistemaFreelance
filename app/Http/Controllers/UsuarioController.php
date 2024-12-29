@@ -18,16 +18,17 @@ class UsuarioController extends Controller
         return view('perfil.mis-publicaciones',compact('proyectos'));
     }
 
-    public function mostrarPostulantes(Proyecto $proyecto,Request $request)
+    public function mostrarPostulantes(Proyecto $proyecto, Request $request)
     {
-        if(!session()->has('usuario')) {
+        if (!session()->has('usuario')) {
             return redirect('/login')->with('error', 'Debe iniciar sesion previamente.');
         }
 
-        $postulantes = $proyecto->postulaciones()->with('perfilDesarrollador')->get()->map(function ($postulacion) {
-            return $postulacion->perfilDesarrollador;
-        })->filter();
-        
-        return view('proyectos.verPostulantes',compact('postulantes'));
+        $postulantes = $proyecto->postulaciones()->with('perfilDesarrollador.tecnologiasConocidas.tecnologia')->get()
+            ->map(function ($postulacion) {
+                return $postulacion->perfilDesarrollador;
+            })->filter();
+
+        return view('proyectos.verPostulantes', compact('postulantes'));
     }
 }
