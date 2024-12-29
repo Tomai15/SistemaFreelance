@@ -256,5 +256,28 @@ class ProyectoController extends Controller
         // Descargar el archivo
         return response()->download($proyecto->url_documento_requerimientos, basename($proyecto->url_documento_requerimientos));
     }
+
+    public function exportarPostulantesPorProyecto($proyectoId)
+    {
+        $proyecto = Proyecto::with(['postulaciones.perfilDesarrollador.tecnologiasConocidas.tecnologia'])->findOrFail($proyectoId);
+
+        $postulantes = $proyecto->postulaciones->map(function ($postulacion) {
+            $perfil = $postulacion->perfilDesarrollador;
+
+            return [
+                'nombre' => $perfil->nombre,
+                'apellido' => $perfil->apellido,
+                'promedio_calificacion' => $perfil->promedio_calificacion,
+                'tecnologias' => $perfil->tecnologiasConocidas->map(function ($tecnologiaConocida) {
+                    return $tecnologiaConocida->tecnologia->nombre . ' (Nivel: ' . $tecnologiaConocida->nivel_tecnologia . ')';
+                })->toArray(),
+            ];
+        });
+
+        return [
+            'proyecto_nombre' => $proyecto->nombre_proyecto,
+            'postulantes' => $postulantes,
+        ];
+    }
 }
 

@@ -16,6 +16,10 @@
     <a href="/misPublicaciones" class="btn btn-secondary mb-3">← Volver</a>
     
     <h2 class="mb-4">Postulantes</h2>
+
+    <a href="{{ route('export.postulantes', $proyecto->id) }}" class="btn btn-success">
+        Descargar Listado de Postulantes
+    </a>
     
     <!-- Tabla de postulantes -->
     <div class="table-container">
