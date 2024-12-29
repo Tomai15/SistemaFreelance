@@ -12,6 +12,7 @@ use App\Models\Urgencia;
 use App\Models\Tecnologia;
 use App\Models\Confidencialidad;
 use App\Models\EstadoPorProyecto;
+use App\Models\TecnologiaConocida;
 
 class PopulateDatabaseSeeder extends Seeder
 {
@@ -102,6 +103,30 @@ class PopulateDatabaseSeeder extends Seeder
         foreach ($perfiles as $perfil) {
             PerfilDesarrollador::firstOrCreate(['id_usuario' => $perfil['id_usuario']], $perfil);
         }
+
+        TecnologiaConocida::create([
+            'perfil_desarrollador_id' => 2,
+            'tecnologia_id' => 1,
+            'nivel_tecnologia' => 10,
+        ]);
+
+        TecnologiaConocida::create([
+            'perfil_desarrollador_id' => 2,
+            'tecnologia_id' => 3,
+            'nivel_tecnologia' => 6,
+        ]);
+
+        TecnologiaConocida::create([
+            'perfil_desarrollador_id' => 1,
+            'tecnologia_id' => 5,
+            'nivel_tecnologia' => 5,
+        ]);
+
+        TecnologiaConocida::create([
+            'perfil_desarrollador_id' => 1,
+            'tecnologia_id' => 3,
+            'nivel_tecnologia' => 8,
+        ]);
     }
 
     /**
@@ -130,7 +155,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 500,
                 "urgencia_id" => 2,
                 "confidencialidad_id" => 3,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 3,
                 "perfil_desarrollador_id" => 1,
                 "tecnologias" => [2, 4, 5, 6],
             ],
@@ -143,8 +168,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 800,
                 "urgencia_id" => 3,
                 "confidencialidad_id" => 4,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
-                "perfil_desarrollador_id" => 2,
+                "usuario_id" => 3,
                 "tecnologias" => [1, 3, 5],
             ],
             [
@@ -156,7 +180,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 450,
                 "urgencia_id" => 1,
                 "confidencialidad_id" => 1,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 3,
                 "perfil_desarrollador_id" => 3,
                 "tecnologias" => [6, 7],
             ],
@@ -167,7 +191,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 600,
                 "urgencia_id" => 2,
                 "confidencialidad_id" => 2,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 1,
                 "tecnologias" => [2, 3, 5],
             ],
             [
@@ -177,7 +201,8 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 1000,
                 "urgencia_id" => 3,
                 "confidencialidad_id" => 4,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 1,
+                "perfil_desarrollador_id" => 2,
                 "tecnologias" => [1, 4, 6],
             ],
             [
@@ -187,7 +212,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 700,
                 "urgencia_id" => 1,
                 "confidencialidad_id" => 3,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 3,
                 "tecnologias" => [3, 5, 7],
             ],
             [
@@ -197,7 +222,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 900,
                 "urgencia_id" => 2,
                 "confidencialidad_id" => 2,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 6,
                 "tecnologias" => [2, 4, 6],
             ],
             [
@@ -207,7 +232,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 550,
                 "urgencia_id" => 3,
                 "confidencialidad_id" => 1,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 5,
                 "tecnologias" => [1, 3, 5],
             ],
             [
@@ -217,7 +242,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 650,
                 "urgencia_id" => 2,
                 "confidencialidad_id" => 3,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 4,
                 "tecnologias" => [1, 4, 6],
             ],
             [
@@ -227,7 +252,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 500,
                 "urgencia_id" => 1,
                 "confidencialidad_id" => 2,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 4,
                 "tecnologias" => [2, 3, 5],
             ],
             [
@@ -237,7 +262,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 750,
                 "urgencia_id" => 3,
                 "confidencialidad_id" => 4,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 5,
                 "tecnologias" => [1, 4, 7],
             ],
             [
@@ -247,7 +272,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 900,
                 "urgencia_id" => 2,
                 "confidencialidad_id" => 3,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 6,
                 "tecnologias" => [2, 5, 6],
             ],
             [
@@ -257,7 +282,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 600,
                 "urgencia_id" => 1,
                 "confidencialidad_id" => 2,
-                "usuario_id" => $usuarios[array_rand($usuarios)],
+                "usuario_id" => 3,
                 "tecnologias" => [3, 4, 7],
             ],
         ];
@@ -293,7 +318,7 @@ class PopulateDatabaseSeeder extends Seeder
         Postulacion::create([
             'proyecto_id' => 2,
             'perfil_desarrollador_id' => 2,
-            'estado_postulacion_id' => 2,
+            'estado_postulacion_id' => 1,
         ]);
         Postulacion::create([
             'proyecto_id' => 4,
@@ -303,6 +328,11 @@ class PopulateDatabaseSeeder extends Seeder
         Postulacion::create([
             'proyecto_id' => 5,
             'perfil_desarrollador_id' => 2,
+            'estado_postulacion_id' => 2,
+        ]);
+        Postulacion::create([
+            'proyecto_id' => 2,
+            'perfil_desarrollador_id' => 1,
             'estado_postulacion_id' => 1,
         ]);
     }

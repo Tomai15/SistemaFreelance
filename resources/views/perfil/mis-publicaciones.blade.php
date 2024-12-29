@@ -175,7 +175,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="8">No hay proyectos disponibles por el momento</td>
+                        <td colspan="8">No tiene publicaciones</td>
                     </tr>
                 @endif
             </tbody>

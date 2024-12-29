@@ -26,10 +26,10 @@
                             <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Servicios</a>
+                            <a class="nav-link" href="/proyectos">Proyectos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contacto</a>
+                            <a class="nav-link" href="#footer">Contacto</a>
                         </li>
                     </ul>
                     @if (session()->has("successLogin"))
