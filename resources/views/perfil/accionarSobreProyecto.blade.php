@@ -21,7 +21,12 @@
                 <i class="bi bi-download"></i> Descargar Requerimientos
             </a>
         </div>
-
+        
+        @if ($proyecto->estadoActual->estado->nombre_tipo_estado == 'Entregado')
+            <div class="alert alert-info">
+                Usted ya ha subido su trabajo. Espere la respuesta del dueño del proyecto.
+            </div>
+        @else
         <!-- Subir Archivo Final -->
         <div>
             <h5>Subir Archivo Final</h5>
@@ -37,6 +42,7 @@
                 </button>
             </form>
         </div>
+        @endif
     </div>
 
 @include('layout.footer')
