@@ -15,7 +15,9 @@ class PerfilDesarrollador extends Model
         'promedio_calificacion',
         'nombre',
         'apellido',
-        'descripcion_sobre_mi'
+        'descripcion_sobre_mi',
+        'CBU',
+        'telefono'
 
     ];
 
