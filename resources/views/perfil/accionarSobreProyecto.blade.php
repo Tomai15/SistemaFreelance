@@ -37,7 +37,23 @@
                     </button>
                 </form>
             </div>
-        @endif
+        @else
+        <!-- Subir Archivo Final -->
+        <div>
+            <h5>Subir Archivo Final</h5>
+            <p>Sube el archivo final del proyecto cuando esté completado:</p>
+            <form action="/misPostulaciones/{{$proyecto->id}}/subirResultado" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="finalFile" class="form-label">Selecciona un archivo:</label>
+                    <input type="file" class="form-control" id="finalFile" name="finalFile" required>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-upload"></i> Subir Archivo
+                </button>
+            </form>
+        </div>
+        @endforelse
     </div>
 
 @include('layout.footer')

@@ -205,7 +205,7 @@ class PerfilDesarrolladorController extends Controller
             ]
         );
 
-        $rutaArchivo = '/store' . $datosUsuario['finalFile']->store('/resultadosProyectos','public');
+        $rutaArchivo = '/storage/' . $datosUsuario['finalFile']->store('/resultadosProyectos','public');
         
         //estado entregado Id 4
         $estadoEntregado = TipoEstado::find(4);
