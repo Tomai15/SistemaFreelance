@@ -7,7 +7,9 @@
     <!-- Filtrado y búsqueda -->
     <div class="filter-search-container">
         <button class="filter-button" id="filterModalToggle">Filtros</button>
-        <a href="/proyectos/create" class="search-button proyectos-button">Publicar Nuevo Proyecto</a>
+        <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
+        <button class="search-button" id="searchButton">Buscar</button>
+        <a href="/proyectos/create" class="search-button proyectos-button">Crear Nuevo Proyecto</a>
     </div>
 
     <!-- Filter Modal -->
@@ -198,9 +200,8 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const tecnologias = ['HTML', 'CSS', 'JavaScript', 'React', 'Angular', 'Vue'];
+    const tecnologias = ['HTML', 'CSS', 'JavaScript', 'React', 'Angular', 'Vue', 'PHP', 'Java', 'Kotlin', 'Laravel', 'Blade', 'Bootstrap'];
 
-    // Populate Tecnologías List
     const tecnologiasList = document.getElementById('tecnologiasList');
     tecnologias.forEach(tech => {
         const listItem = document.createElement('li');
@@ -208,13 +209,86 @@
         tecnologiasList.appendChild(listItem);
     });
 
-    // Modal Toggling
     const filterModal = new bootstrap.Modal(document.getElementById('filterModal'));
     const filterModalToggle = document.getElementById('filterModalToggle');
     filterModalToggle.addEventListener('click', () => {
-        filterModal.toggle();
+        filterModal.show();
     });
-});
+
+    const resetButton = document.getElementById('resetButton');
+    resetButton.addEventListener('click', () => {
+        document.querySelectorAll('#filterModal input').forEach(input => {
+            if (input.type === 'checkbox' || input.type === 'radio') {
+                input.checked = false;
+            } else if (input.type === 'number') {
+                input.value = '';
+            }
+        });
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    document.querySelectorAll('#tecnologiasList input').forEach(input => {
+        input.checked = urlParams.getAll('tecnologias').includes(input.value);
+    });
+
+    ['precioDesde', 'precioHasta', 'horasDesde', 'horasHasta'].forEach(id => {
+        const element = document.getElementById(id);
+        if (urlParams.get(id)) element.value = urlParams.get(id);
+    });
+
+    document.querySelectorAll('input[name="urgencia"]').forEach(input => {
+        input.checked = urlParams.get('urgencia') === input.value;
+    });
+
+    document.querySelectorAll('input[name="confidencialidad"]').forEach(input => {
+        input.checked = urlParams.get('confidencialidad') === input.value;
+    });
+
+    // Apply Filters
+    const applyButton = document.getElementById('applyButton');
+    applyButton.addEventListener('click', () => {
+        const selectedFilters = {
+            tecnologias: Array.from(document.querySelectorAll('#tecnologiasList input:checked')).map(el => el.value),
+            precioDesde: document.getElementById('precioDesde').value,
+            precioHasta: document.getElementById('precioHasta').value,
+            horasDesde: document.getElementById('horasDesde').value,
+            horasHasta: document.getElementById('horasHasta').value,
+            urgencia: document.querySelector('input[name="urgencia"]:checked')?.value || '',
+            confidencialidad: document.querySelector('input[name="confidencialidad"]:checked')?.value || ''
+        };
+
+        const queryString = new URLSearchParams(selectedFilters).toString();
+
+        window.location.href = `/misPublicaciones?${queryString}`;
+        });
+    });
+
+document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+
+        searchButton.addEventListener('click', () => {
+            const searchTerm = searchInput.value.trim();
+
+            const url = new URL(window.location.href);
+            url.searchParams.set('search', searchTerm);
+            window.location.href = url.toString();
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchButton.click();
+            }
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const existingSearchTerm = urlParams.get('search');
+        if (existingSearchTerm) {
+            searchInput.value = existingSearchTerm;
+        }
+    });
 </script>
 
 @include('layout.footer')
