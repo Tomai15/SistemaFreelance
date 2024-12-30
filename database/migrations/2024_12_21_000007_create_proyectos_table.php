@@ -16,6 +16,7 @@ return new class extends Migration
         $table->string('nombre_proyecto');
         $table->text('descripcion')->nullable();
         $table->string('url_documento_requerimientos')->nullable();
+        $table->string('archivo_final_url')->nullable();
         $table->integer('horas_estimadas')->nullable();
         $table->integer('precio')->nullable();
         $table->integer('calificacion_trabajo')->nullable();

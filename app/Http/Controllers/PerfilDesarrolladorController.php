@@ -210,12 +210,12 @@ class PerfilDesarrolladorController extends Controller
             ]
         );
 
-        $rutaArchivo = '/storage/' . $datosUsuario['finalFile']->store('/resultadosProyectos','public');
+        $rutaArchivo = 'storage/' . $datosUsuario['finalFile']->store('/resultadosProyectos','public');
         
         //estado entregado Id 4
         $estadoEntregado = TipoEstado::find(4);
 
-        $proyecto->url_documento_requerimientos = $rutaArchivo;
+        $proyecto->archivo_final_url = $rutaArchivo;
         $nuevoEstado = new EstadoPorProyecto();
         $nuevoEstado->estado()->associate($estadoEntregado);
         
