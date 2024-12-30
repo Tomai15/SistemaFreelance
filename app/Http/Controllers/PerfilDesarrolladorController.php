@@ -186,7 +186,7 @@ class PerfilDesarrolladorController extends Controller
 
         $trabajosEnProceso = $perfilDesarrollador->trabajosEnProceso()
             ->whereHas('estadoActual.estado', function ($query) {
-                $query->where('nombre_tipo_estado', 'En Curso');
+                $query->where('nombre_tipo_estado', ['En Curso', 'Entregado', 'Pendiente Pago']);
             })->paginate(10);
 
         return view('perfil.mis-postulaciones', compact('postulaciones', 'trabajosRealizados', 'trabajosEnProceso'));
@@ -194,8 +194,13 @@ class PerfilDesarrolladorController extends Controller
 
     public function accionarProyecto(Proyecto $proyecto)
     {
+        if(!session()->has('usuario')) {
+            return redirect('/login')->with('error', 'Debe iniciar sesion previamente.');
+        }
+        
         return view('perfil.accionarSobreProyecto',compact('proyecto'));
     }
+
     public function subirResultadoProyecto(Proyecto $proyecto,Request $request)
     {
         $datosUsuario = $request->validate
@@ -219,6 +224,7 @@ class PerfilDesarrolladorController extends Controller
         $proyecto->refresh();
         return view('perfil.accionarSobreProyecto',compact('proyecto'));
     }
+
     public function confirmarPago(Proyecto $proyecto)
     {
         //estado final Id 3

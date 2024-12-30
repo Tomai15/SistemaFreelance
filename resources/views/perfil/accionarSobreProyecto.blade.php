@@ -1,5 +1,6 @@
 @include('layout.header')
     <div class="container mt-5 mb-3">
+        <a href="/misPostulaciones" class="btn btn-secondary mb-3">← Volver</a>
         <h2 class="mb-4">Gestión del Proyecto</h2>
 
         <!-- Información del Proyecto -->
@@ -22,18 +23,18 @@
             </a>
         </div>
         
-        @if ($proyecto->estadoActual->estado->nombre_tipo_estado == 'Entregado')
+        @if (strcasecmp(trim($proyecto->estadoActual->estado->nombre_tipo_estado), 'Entregado') === 0)
             <div class="alert alert-info">
                 Usted ya ha subido su trabajo. Espere la respuesta del dueño del proyecto.
             </div>
-        @elseif ($proyecto->estadoActual->estado->nombre_tipo_estado == 'Pendiente pago')
+        @elseif (strcasecmp(trim($proyecto->estadoActual->estado->nombre_tipo_estado), 'Pendiente Pago') === 0)
             <div>
                 <h5>Confirmar Pago</h5>
                 <p>Confirme que ha realizado el pago correspondiente para completar el proyecto:</p>
-                <form action="/misPostulaciones/{{$proyecto->id}}/confirmarPago" method="POST">
+                <form action="{{ route('misPostulaciones.confirmarPago', $proyecto->id) }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-success">
-                        <i class="bi bi-cash"></i> Confirmar Pago
+                        <i class="bi bi-cash"></i> Confirmar
                     </button>
                 </form>
             </div>

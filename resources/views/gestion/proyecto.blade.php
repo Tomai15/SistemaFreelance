@@ -1,6 +1,8 @@
 @include('layout.header')
 
 <div class="container mt-5 mb-3">
+    
+    <a href="/misPublicaciones" class="btn btn-secondary mb-3">← Volver</a>
     <h2 class="mb-4">Gestión del Proyecto</h2>
 
     <!-- Información del Proyecto -->
@@ -42,7 +44,7 @@
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rateModal">
                 <i class="bi bi-check"></i> Aceptar Entrega
             </button>
-            <button type="submit" name="accion" value="rechazar" class="btn btn-danger">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal">
                 <i class="bi bi-x"></i> Rechazar Entrega
             </button>
         </div>
@@ -70,6 +72,28 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" name="accion" value="aceptar" class="btn btn-success">Aceptar Entrega</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Rechazar -->
+        <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="{{ route('proyectos.controlEntrega', $proyecto->id) }}" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="rejectModalLabel">Confirmar Rechazo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Está seguro que quiere rechazar esta entrega? Esta acción no puede deshacerse.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" name="accion" value="rechazar" class="btn btn-danger">Rechazar Entrega</button>
                         </div>
                     </form>
                 </div>

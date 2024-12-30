@@ -35,7 +35,7 @@ Route::controller(PerfilDesarrolladorController::class)->group(function()
     Route::get('/misPostulaciones','mostrarMisPostulacion');
     Route::get('/misPostulaciones/{proyecto}/accionarProyecto','accionarProyecto');
     Route::post('/misPostulaciones/{proyecto}/subirResultado','subirResultadoProyecto');
-    Route::post('/misPostulaciones/{{$proyecto->id}}/confirmarPago','confirmarPago');
+    Route::post('/misPostulaciones/{proyecto}/confirmarPago', 'confirmarPago')->name('misPostulaciones.confirmarPago');
     Route::delete('/misPostulaciones/{postulacion}', 'eliminarPostulacion')->name('postulacion.destroy');
 }
 );
@@ -72,6 +72,6 @@ Route::get('/proyectos/{proyectoId}/export-postulantes', function ($proyectoId) 
 
 Route::controller(GestionProyectoController::class)->group(function () {
     Route::get('/proyectos/{id}/gestion', 'show')->name('proyectos.gestion');
-    Route::get('/proyectos/{id}/controlEntrega', 'controlEntrega')->name('proyectos.controlEntrega');
+    Route::post('/proyectos/{id}/controlEntrega', 'controlEntrega')->name('proyectos.controlEntrega');
     Route::get('/proyectos/{id}/download', 'descargarArchivoFinal')->name('proyectos.descargarArchivoFinal');
-});
+});     
