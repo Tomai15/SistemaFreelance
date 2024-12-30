@@ -27,6 +27,12 @@ class ProyectoController extends Controller
             });
         });
 
+        // Filter by Nombre Proyecto (Search)
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where('nombre_proyecto', 'LIKE', "%$search%");
+        }
+
         // Filter by Tecnologías
         if ($request->filled('tecnologias')) {
             $tecnologias = (array) $request->input('tecnologias');

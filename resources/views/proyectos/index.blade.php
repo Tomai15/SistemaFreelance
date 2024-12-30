@@ -7,7 +7,8 @@
     <!-- Filtrado y búsqueda -->
     <div class="filter-search-container">
         <button class="filter-button" id="filterModalToggle">Filtros</button>
-        
+        <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
+        <button class="search-button" id="searchButton">Buscar</button>
         <a href="/proyectos/create" class="search-button proyectos-button">Crear Nuevo Proyecto</a>
     </div>
     
@@ -168,7 +169,6 @@
     document.addEventListener('DOMContentLoaded', () => {
     const tecnologias = ['HTML', 'CSS', 'JavaScript', 'React', 'Angular', 'Vue'];
 
-    // Populate Tecnologías List
     const tecnologiasList = document.getElementById('tecnologiasList');
     tecnologias.forEach(tech => {
         const listItem = document.createElement('li');
@@ -176,14 +176,12 @@
         tecnologiasList.appendChild(listItem);
     });
 
-    // Modal Toggling
     const filterModal = new bootstrap.Modal(document.getElementById('filterModal'));
     const filterModalToggle = document.getElementById('filterModalToggle');
     filterModalToggle.addEventListener('click', () => {
         filterModal.show();
     });
 
-    // Reset Filters
     const resetButton = document.getElementById('resetButton');
     resetButton.addEventListener('click', () => {
         document.querySelectorAll('#filterModal input').forEach(input => {
@@ -195,7 +193,6 @@
         });
     });
 
-    // Prefill Filters Based on Query Parameters
     const urlParams = new URLSearchParams(window.location.search);
 
     document.querySelectorAll('#tecnologiasList input').forEach(input => {
@@ -228,13 +225,37 @@
             confidencialidad: document.querySelector('input[name="confidencialidad"]:checked')?.value || ''
         };
 
-        // Build the query string
         const queryString = new URLSearchParams(selectedFilters).toString();
 
-        // Redirect to the filtered URL
         window.location.href = `/proyectos?${queryString}`;
+        });
     });
-});
+
+document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+
+        searchButton.addEventListener('click', () => {
+            const searchTerm = searchInput.value.trim();
+
+            const url = new URL(window.location.href);
+            url.searchParams.set('search', searchTerm);
+            window.location.href = url.toString();
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchButton.click();
+            }
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const existingSearchTerm = urlParams.get('search');
+        if (existingSearchTerm) {
+            searchInput.value = existingSearchTerm;
+        }
+    });
 </script>
 
 
