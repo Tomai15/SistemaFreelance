@@ -22,6 +22,7 @@ return new class extends Migration
             ['id' => 3, 'nombre_tipo_estado' => 'Cerrado'],
             ['id' => 4, 'nombre_tipo_estado' => 'Entregado'],
             ['id' => 5, 'nombre_tipo_estado' => 'Cancelado'],
+            ['id' => 5, 'nombre_tipo_estado' => 'Pendiente Pago'],
         ]);
     }
 
