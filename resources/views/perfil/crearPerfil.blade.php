@@ -1,22 +1,13 @@
 @include('layout.header')
 
 <div class="container mt-5 mb-5">
-    @if (!isset(session('usuario')->perfilDesarrollador))
-        <div class="container">
-            <div class="alert alert-success text-center">
-                Aun no tiene un perfil como desarrollador.
-                Cree uno para postularse a proyectos.
-            </div>
-        </div>
-        <h1 class="mb-4">Cree su perfil</h1>
-    @endif
     
     <form action="/crearPerfil" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Nombre -->
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input value="{{old('nombre')}}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" value="{{ old('nombre') }}" required>
             @error('nombre')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -25,7 +16,7 @@
         <!-- Apellido -->
         <div class="mb-3">
             <label for="apellido" class="form-label">Apellido</label>
-            <input value="{{old('apellido')}}" type="text" class="form-control" id="apellido" name="apellido" placeholder="Escribe tu apellido" required>
+            <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Escribe tu apellido" value="{{ old('apellido') }}" required>
             @error('apellido')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror

@@ -300,8 +300,19 @@ class ProyectoController extends Controller
         $proyecto = Proyecto::findOrFail($id);
         $usuarioEnSesion = session("usuario");
 
+        if (!$usuarioEnSesion) {
+            return redirect('/login');
+        }
+
+        $perfilDesarrollador = $usuarioEnSesion->perfilDesarrollador;
+
+        if (!$perfilDesarrollador) {
+            return redirect()->back()->with('error', 'Debes crear un perfil desarrollador antes de postularte.');
+        }
+
         // Verificar si el usuario ya está postulado para este proyecto
         $existePostulacion = $proyecto->postulaciones()->where('perfil_desarrollador_id', $usuarioEnSesion->perfilDesarrollador->id)->exists();
+    
 
         if ($existePostulacion) {
             // Si el usuario ya está postulado, redirige con un mensaje de error
