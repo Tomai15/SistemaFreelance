@@ -233,7 +233,6 @@ class PerfilDesarrolladorController extends Controller
         return redirect('/misPostulaciones');
     }
 
-    }
 
     public function eliminarPostulacion($id)
     {
