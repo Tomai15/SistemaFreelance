@@ -1,5 +1,11 @@
 .image{
     background-image: url(../imagensPresentacion/background.svg);
+    height: 80vh;
+    background-size:cover;
+}
+
+.background{
+    background-image: url(../imagensPresentacion/bg.png);
     height: 100vh;
     background-size: cover;
 }
