@@ -28,6 +28,8 @@
     <main class="">
         <div class="d-flex align-items-center text-gray">
             <div class="container m-5">
+                <a href="/proyectos" class="btn btn-secondary mb-3">← Volver</a>
+                <h2 class="mb-4">Creación de un nuevo proyecto</h2>
                 <form action="/proyectos" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3 mx-5">

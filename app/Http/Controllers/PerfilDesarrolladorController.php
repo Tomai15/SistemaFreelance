@@ -185,8 +185,9 @@ class PerfilDesarrolladorController extends Controller
             })->paginate(10);
 
         $trabajosEnProceso = $perfilDesarrollador->trabajosEnProceso()
+            ->with('estadoActual.estado')
             ->whereHas('estadoActual.estado', function ($query) {
-                $query->where('nombre_tipo_estado', ['En Curso', 'Entregado', 'Pendiente Pago']);
+                $query->whereIn('nombre_tipo_estado', ['En Curso', 'Entregado', 'Pendiente Pago']);
             })->paginate(10);
 
         return view('perfil.mis-postulaciones', compact('postulaciones', 'trabajosRealizados', 'trabajosEnProceso'));

@@ -15,13 +15,15 @@
         </div>
 
         <!-- Descargar Requerimientos -->
-        <div class="mb-4">
-            <h5>Requerimientos del Proyecto</h5>
-            <p>Descarga el archivo con los requerimientos del proyecto:</p>
-            <a href="{{asset($proyecto->url_documento_requerimientos)}}" download class="btn btn-primary">
-                <i class="bi bi-download"></i> Descargar Requerimientos
-            </a>
-        </div>
+        @if (strcasecmp(trim($proyecto->estadoActual->estado->nombre_tipo_estado), 'Pendiente Pago') !== 0)    
+            <div class="mb-4">
+                <h5>Requerimientos del Proyecto</h5>
+                <p>Descarga el archivo con los requerimientos del proyecto:</p>
+                <a href="{{asset($proyecto->url_documento_requerimientos)}}" download class="btn btn-primary">
+                    <i class="bi bi-download"></i> Descargar Requerimientos
+                </a>
+            </div>
+        @endif
         
         @if (strcasecmp(trim($proyecto->estadoActual->estado->nombre_tipo_estado), 'Entregado') === 0)
             <div class="alert alert-info">

@@ -9,8 +9,12 @@ use App\Http\Controllers\GestionProyectoController;
 use App\Exports\PostulantesExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::get('/', function () {
+    return redirect('/home');
 });
 
 Route::get('/home', function () {
