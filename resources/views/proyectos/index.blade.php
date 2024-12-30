@@ -167,7 +167,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const tecnologias = ['HTML', 'CSS', 'JavaScript', 'React', 'Angular', 'Vue'];
+    const tecnologias = ['HTML', 'CSS', 'JavaScript', 'React', 'Angular', 'Vue', 'PHP', 'Java', 'Kotlin', 'Laravel', 'Blade', 'Bootstrap'];
 
     const tecnologiasList = document.getElementById('tecnologiasList');
     tecnologias.forEach(tech => {
