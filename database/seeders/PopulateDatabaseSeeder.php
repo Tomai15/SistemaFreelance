@@ -39,17 +39,17 @@ class PopulateDatabaseSeeder extends Seeder
         $users = [
             [
                 "email" => "user1@example.com",
-                "nombre_usuario" => "user1",
+                "nombre_usuario" => "Juan",
                 "password" => bcrypt("password1"),
             ],
             [
                 "email" => "user2@example.com",
-                "nombre_usuario" => "user2",
+                "nombre_usuario" => "Ana",
                 "password" => bcrypt("password2"),
             ],
             [
                 "email" => "user3@example.com",
-                "nombre_usuario" => "user3",
+                "nombre_usuario" => "Carlos",
                 "password" => bcrypt("password3"),
             ],
             [

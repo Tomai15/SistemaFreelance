@@ -1,5 +1,10 @@
 @include('layout.header')
-
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 <div class="container mt-5 mb-5">
         <h1 class="mb-4">Edite su perfil</h1>
         <form action="/editarPerfil/{{session('usuario')->perfilDesarrollador->id}}" method="POST" enctype="multipart/form-data">
@@ -34,8 +39,8 @@
 
         <!-- CVU -->
         <div class="mb-3">
-            <label for="cvu" class="form-label">CVU</label>
-            <input value="{{old('cvu')}}" type="text" class="form-control" id="cvu" name="CBU" placeholder="Escribe tu CVU" required>
+            <label for="cbu" class="form-label">CBU</label>
+            <input value="{{old('cbu')}}" type="text" class="form-control" id="cbu" name="CBU" placeholder="Escribe tu CBU" required>
             @error('CBU')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror

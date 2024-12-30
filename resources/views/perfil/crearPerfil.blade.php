@@ -1,7 +1,15 @@
 @include('layout.header')
 
 <div class="container mt-5 mb-5">
-    
+    @if (!isset(session('usuario')->perfilDesarrollador))
+        <div class="container">
+            <div class="alert alert-success text-center">
+                Aun no tiene un perfil como desarrollador.
+                Cree uno para postularse a proyectos.
+            </div>
+        </div>
+        <h1 class="mb-4">Cree su perfil</h1>
+    @endif
     <form action="/crearPerfil" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Nombre -->

@@ -162,6 +162,7 @@ class PerfilDesarrolladorController extends Controller
         $perfilDesarrollador->save();
         $usuarioEnSesion->save();
         session(('usuario'))->refresh();
+        session()->flash('success', 'Perfil actualizado exitosamente.');
         return response()->redirectTo("/proyectos");
     }
 
