@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PerfilDesarrolladorController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\GestionProyectoController;
 use App\Exports\PostulantesExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -69,3 +70,8 @@ Route::get('/proyectos/{proyectoId}/export-postulantes', function ($proyectoId) 
 
 })->name('export.postulantes');
 
+Route::controller(GestionProyectoController::class)->group(function () {
+    Route::get('/proyectos/{id}/gestion', 'show')->name('proyectos.gestion');
+    Route::get('/proyectos/{id}/controlEntrega', 'controlEntrega')->name('proyectos.controlEntrega');
+    Route::get('/proyectos/{id}/download', 'actualizarArchivoFinal')->name('proyectos.actualizarArchivoFinal');
+});

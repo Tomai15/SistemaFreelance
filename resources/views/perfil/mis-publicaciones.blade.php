@@ -99,7 +99,7 @@
             <tbody>
                 @if($proyectos->count())
                     @foreach($proyectos as $proyecto)
-                    <tr class="clickable-row" onclick="window.location.href='/proyectos/{{ $proyecto->id }}'">
+                    <tr class="clickable-row" onclick="window.location.href='/proyectos/{{ $proyecto->id }}/gestion'">
                             <td>{{ \Illuminate\Support\Str::limit($proyecto->nombre_proyecto, 40, '...') }}</td>
                             <td>
                                 @php
