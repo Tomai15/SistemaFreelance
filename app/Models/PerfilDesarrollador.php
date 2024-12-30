@@ -41,6 +41,10 @@ class PerfilDesarrollador extends Model
         return $this->hasMany(Postulacion::class, 'perfil_desarrollador_id');
     }
 
+    public function usuario()
+    {
+    return $this->belongsTo(Usuario::class, 'id_usuario');
+    }
 
 
     //Version usando TecnologiaConocida como tabla intermedia

@@ -83,6 +83,7 @@ class PopulateDatabaseSeeder extends Seeder
             [
                 "nombre" => "Juan",
                 "apellido" => "Pérez",
+                "descripcion_sobre_mi" => "Desarrollador web con experiencia en tecnologías como HTML, CSS, y JavaScript. Apasionado por el diseño de interfaces intuitivas.",
                 "promedio_calificacion" => 4.5,
                 "id_usuario" => 1,
                 "CBU" => "01700992 20000067797370",
@@ -92,6 +93,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "nombre" => "Ana",
                 "apellido" => "García",
                 "promedio_calificacion" => 4.8,
+                "descripcion_sobre_mi" => "Ingeniera de software especializada en backend con Python y Django. Experta en desarrollo de APIs robustas.",
                 "id_usuario" => 2,
                 "CBU" => "28590992 20000067797370",
                 "telefono" => "+54 9 223 123-4567",
@@ -100,6 +102,7 @@ class PopulateDatabaseSeeder extends Seeder
             [
                 "nombre" => "Carlos",
                 "apellido" => "López",
+                "descripcion_sobre_mi" => "Diseñador gráfico con experiencia en branding y diseño digital. Entusiasta del diseño UX/UI.",
                 "promedio_calificacion" => 4.2,
                 "id_usuario" => 3,
                 "CBU" => "08790992 20000067435370",
