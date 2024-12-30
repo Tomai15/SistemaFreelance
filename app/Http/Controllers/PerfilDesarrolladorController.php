@@ -18,6 +18,10 @@ class PerfilDesarrolladorController extends Controller
     public function crearPerfil(Request $request)
     {       
         $tecnologias = Tecnologia::all();
+        if (!session()->has('usuario')) {
+            return redirect('/login')->with('error', 'Debe iniciar sesión previamente.');
+        }
+
         if(!isset(session('usuario')->perfilDesarrollador))
         {
             

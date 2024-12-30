@@ -108,6 +108,15 @@ class PopulateDatabaseSeeder extends Seeder
                 "CBU" => "08790992 20000067435370",
                 "telefono" => "+54 9 3541 12-3456",
             ],
+            [
+                "nombre" => "Pedro",
+                "apellido" => "Giménez",
+                "descripcion_sobre_mi" => "Diseñador gráfico con experiencia en branding y diseño digital. Entusiasta del diseño UX/UI.",
+                "promedio_calificacion" => 4.2,
+                "id_usuario" => 4,
+                "CBU" => "27690992 20000067467812",
+                "telefono" => "+54 9 3541 12-9726",
+            ],
         ];
 
         foreach ($perfiles as $perfil) {
@@ -136,6 +145,24 @@ class PopulateDatabaseSeeder extends Seeder
             'perfil_desarrollador_id' => 1,
             'tecnologia_id' => 3,
             'nivel_tecnologia' => 8,
+        ]);
+
+        TecnologiaConocida::create([
+            'perfil_desarrollador_id' => 4,
+            'tecnologia_id' => 5,
+            'nivel_tecnologia' => 4,
+        ]);
+
+        TecnologiaConocida::create([
+            'perfil_desarrollador_id' => 4,
+            'tecnologia_id' => 1,
+            'nivel_tecnologia' => 10,
+        ]);
+
+        TecnologiaConocida::create([
+            'perfil_desarrollador_id' => 4,
+            'tecnologia_id' => 8,
+            'nivel_tecnologia' => 7,
         ]);
     }
 
@@ -232,7 +259,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 900,
                 "urgencia_id" => 2,
                 "confidencialidad_id" => 2,
-                "usuario_id" => 6,
+                "usuario_id" => 4,
                 "tecnologias" => [2, 4, 6],
             ],
             [
@@ -272,7 +299,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 750,
                 "urgencia_id" => 3,
                 "confidencialidad_id" => 4,
-                "usuario_id" => 5,
+                "usuario_id" => 4,
                 "tecnologias" => [1, 4, 7],
             ],
             [
@@ -282,7 +309,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 900,
                 "urgencia_id" => 2,
                 "confidencialidad_id" => 3,
-                "usuario_id" => 6,
+                "usuario_id" => 4,
                 "tecnologias" => [2, 5, 6],
             ],
             [
@@ -292,7 +319,7 @@ class PopulateDatabaseSeeder extends Seeder
                 "precio" => 600,
                 "urgencia_id" => 1,
                 "confidencialidad_id" => 2,
-                "usuario_id" => 3,
+                "usuario_id" => 4,
                 "tecnologias" => [3, 4, 7],
             ],
         ];
