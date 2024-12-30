@@ -219,6 +219,21 @@ class PerfilDesarrolladorController extends Controller
         $proyecto->refresh();
         return view('perfil.accionarSobreProyecto',compact('proyecto'));
     }
+    public function confirmarPago(Proyecto $proyecto)
+    {
+        //estado final Id 3
+        $estadoCerrado = TipoEstado::find(3);
+
+        $nuevoEstado = new EstadoPorProyecto();
+        $nuevoEstado->estado()->associate($estadoCerrado);
+        
+        $proyecto->estadoActual()->save($nuevoEstado);
+        $proyecto->save();
+        $proyecto->refresh();
+        return redirect('/misPostulaciones');
+    }
+
+    }
 
     public function eliminarPostulacion($id)
     {

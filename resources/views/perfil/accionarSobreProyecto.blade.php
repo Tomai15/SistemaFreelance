@@ -26,22 +26,17 @@
             <div class="alert alert-info">
                 Usted ya ha subido su trabajo. Espere la respuesta del dueño del proyecto.
             </div>
-        @else
-        <!-- Subir Archivo Final -->
-        <div>
-            <h5>Subir Archivo Final</h5>
-            <p>Sube el archivo final del proyecto cuando esté completado:</p>
-            <form action="/misPostulaciones/{{$proyecto->id}}/subirResultado" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="mb-3">
-                    <label for="finalFile" class="form-label">Selecciona un archivo:</label>
-                    <input type="file" class="form-control" id="finalFile" name="finalFile" required>
-                </div>
-                <button type="submit" class="btn btn-success">
-                    <i class="bi bi-upload"></i> Subir Archivo
-                </button>
-            </form>
-        </div>
+        @elseif ($proyecto->estadoActual->estado->nombre_tipo_estado == 'Pendiente pago')
+            <div>
+                <h5>Confirmar Pago</h5>
+                <p>Confirme que ha realizado el pago correspondiente para completar el proyecto:</p>
+                <form action="/misPostulaciones/{{$proyecto->id}}/confirmarPago" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-cash"></i> Confirmar Pago
+                    </button>
+                </form>
+            </div>
         @endif
     </div>
 

@@ -34,6 +34,7 @@ Route::controller(PerfilDesarrolladorController::class)->group(function()
     Route::get('/misPostulaciones','mostrarMisPostulacion');
     Route::get('/misPostulaciones/{proyecto}/accionarProyecto','accionarProyecto');
     Route::post('/misPostulaciones/{proyecto}/subirResultado','subirResultadoProyecto');
+    Route::post('/misPostulaciones/{{$proyecto->id}}/confirmarPago','confirmarPago');
     Route::delete('/misPostulaciones/{postulacion}', 'eliminarPostulacion')->name('postulacion.destroy');
 }
 );
