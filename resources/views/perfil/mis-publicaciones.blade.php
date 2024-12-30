@@ -5,11 +5,9 @@
     <h2 class="mb-4 login">Mis proyectos publicados</h2>
 
     <!-- Filtrado y búsqueda -->
-    <div class="d-flex justify-content-sm-start">
+    <div class="filter-search-container">
         <button class="filter-button" id="filterModalToggle">Filtros</button>
-        <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
-        <button class="search-button" id="searchButton">Buscar</button>
-        
+        <a href="/proyectos/create" class="search-button proyectos-button">Publicar Nuevo Proyecto</a>
     </div>
 
     <!-- Filter Modal -->

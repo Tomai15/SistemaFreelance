@@ -7,8 +7,7 @@
     <!-- Filtrado y búsqueda -->
     <div class="filter-search-container">
         <button class="filter-button" id="filterModalToggle">Filtros</button>
-        <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
-        <button class="search-button" id="searchButton">Buscar</button>
+        
         <a href="/proyectos/create" class="search-button proyectos-button">Crear Nuevo Proyecto</a>
     </div>
     

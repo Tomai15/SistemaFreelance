@@ -24,6 +24,8 @@
                       <h5 class="card-title">{{ $proyecto->nombre_proyecto }}</h5>
                       <p class="card-text">{{ $proyecto->descripcion }}</p>
                       <div class="py-2">
+                        <p><strong>Precio:</strong> US${{ number_format($proyecto->precio, 2) }}</p>
+                        <p><strong>Horas Estimadas de Desarrollo:</strong> {{ $proyecto->horas_estimadas }} horas</p>
                           <h6>Tecnologías requeridas:</h6>
                           <div class="tags">
                               @foreach ($proyecto->tecnologias as $tecnologia)
