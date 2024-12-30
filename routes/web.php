@@ -73,5 +73,5 @@ Route::get('/proyectos/{proyectoId}/export-postulantes', function ($proyectoId) 
 Route::controller(GestionProyectoController::class)->group(function () {
     Route::get('/proyectos/{id}/gestion', 'show')->name('proyectos.gestion');
     Route::get('/proyectos/{id}/controlEntrega', 'controlEntrega')->name('proyectos.controlEntrega');
-    Route::get('/proyectos/{id}/download', 'actualizarArchivoFinal')->name('proyectos.actualizarArchivoFinal');
+    Route::get('/proyectos/{id}/download', 'descargarArchivoFinal')->name('proyectos.descargarArchivoFinal');
 });
